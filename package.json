@@ -1,0 +1,21 @@
+{
+  "name": "ig_user",
+  "version": "1.0.0",
+  "description": "Interface user",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Luc Brulet",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^3.0.0",
+    "body-parser": "^1.18.3",
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "express-session": "^1.15.6",
+    "html": "^1.0.0",
+    "mysql": "^2.16.0",
+    "path": "^0.12.7"
+  }
+}
