@@ -4,7 +4,7 @@ var express = require("express");
 var ejs = require("ejs");
 var path = require("path");
 var api = require('./src/account');
-var sql = require('./sql');
+
 var app = express();
 
 app.use(bodyParser.json());
@@ -26,34 +26,43 @@ app.get('/home', function (req, res) {
     res.render('home');
 });
 
+app.post('/login', function (req, res) {
+    res.render('login');
+});
+
 app.post('/api/login', function (req, res) {
     if (req.body.person.usernameLogin == undefined || req.body.person.usernameLogin.length == 0 ||
         req.body.person.password == undefined || req.body.person.password.length == 0)
-        res.status(403).send({ warning: "Empty field" });
+        res.status(403).send({ message: 'error' });
     else {
         api.login(req.body.person.usernameLogin, req.body.person.password, function (err) {
-            if (err)
-                res.status(403).send({ waring: "Username or password is incorrect" });
-            else
-                res.status(200).send({ message: "Success" });
+            if (err) {
+                console.log(err);
+                res.status(403).send({ message: 'error' });
+            }
+            else {
+                console.log("success");
+                res.status(200).send({ message: 'success' });
+            }
         });
     }
 });
 
 app.post('/api/register', function (req, res) {
+    console.log("register");
     if (req.body.person.usernameRegister == undefined || req.body.person.usernameRegister.length == 0 ||
         req.body.person.email == undefined || req.body.person.email.length == 0 ||
         req.body.person.password == undefined || req.body.person.password.length == 0 ||
         req.body.person.passwordConfirm == undefined || req.body.person.passwordConfirm.length == 0)
-        res.status(403).send({ warning: "Empty field" });
+        res.status(403).send({ message: 'error' });
     else if (req.body.person.password != req.body.person.passwordConfirm)
-        res.status(403).send({ warning: "Passwords are the same" });
+        res.status(403).send({ message: 'error' });
     else {
         api.register(req.body.person.usernameRegister, req.body.person.email, req.body.person.password, function (err) {
             if (err)
-                res.status(403).send({ warning: "User unknown" });
+                res.status(403).send({ message: 'error' });
             else
-                res.status(200).send({ message: "success" });
+                res.status(200).send({ message: 'success' });
         });
     }
 });
