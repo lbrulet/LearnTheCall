@@ -22,19 +22,21 @@ function register() {
     let passwordConfirm = $("#confirm-password-register").val();
     var person = { usernameRegister: usernameRegister, email: email, password: password, passwordConfirm: passwordConfirm };
     $.post("/api/register", { person }, function (data) {
-        alert("sucess");
-        $(location).attr('href', 'home');
+    }).done(function(data) {    
+        $(location).attr('href', '/home');
     }).fail(function (data, textStatus, xhr) {
-        alert("fail");
+        $(location).attr('href', '/login');
     });
 }
 
 function login() {
     let usernameLogin = $("#username-login").val();
     let password = $("#password-login").val();
-    var person = { usernameLogin: usernameLogin, password: password };
+    var person = { usernameLogin: usernameLogin, password: password };    
     $.post("/api/login", { person }, function (data) {
-        $(location).attr('href', 'home');
+    }).done(function(data) {
+        $(location).attr('href', '/home');
     }).fail(function (data, textStatus, xhr) {
-    })
+        $(location).attr('href', '/login');
+    });
 }
