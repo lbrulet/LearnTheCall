@@ -51,3 +51,15 @@ exports.login = function login(username, password, callback) {
         });
     });
 }
+
+exports.getAllImage = function getAllImage(callback) {
+    userMongoose.Image.find({}, function (err, users) {
+        if (err)
+            return callback(err, undefined);
+        var userMap = {};
+        users.forEach(function (user) {
+            userMap[user._id] = user;
+        });
+        return callback(undefined, userMap);
+    });
+}

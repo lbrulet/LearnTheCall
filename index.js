@@ -48,6 +48,15 @@ app.post('/api/login', function (req, res) {
     }
 });
 
+app.post('/api/getAllImage', function (req, res) {
+    api.getAllImage(function (err, result) {
+        if (err)
+            res.status(403).send({ message: "Error" });
+        else
+            res.status(200).send({ message: result });
+    });
+});
+
 app.post('/api/register', function (req, res) {
     console.log("register");
     if (req.body.person.usernameRegister == undefined || req.body.person.usernameRegister.length == 0 ||
