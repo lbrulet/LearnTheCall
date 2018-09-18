@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var ConMongoose = require('../mongooseCon');
 var jwt = require('jsonwebtoken');
 
 var UserSchema = new mongoose.Schema({
@@ -19,7 +20,7 @@ UserSchema.methods.generateJWT = function () {
   }, 'secret');
 }
 
-UserSchema.methods.toAuthJSON = function() {
+UserSchema.methods.toAuthJSON = function () {
   return {
     _id: this._id,
     email: this.email,
@@ -27,4 +28,6 @@ UserSchema.methods.toAuthJSON = function() {
   };
 };
 
-exports.UserSchema = UserSchema;
+let User = mongoose.model('User', UserSchema);
+
+module.exports = { User };
