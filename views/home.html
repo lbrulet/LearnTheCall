@@ -2,11 +2,45 @@
 <html>
 
 <head>
-    <title>Example</title>
+    <title>Accueil</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/public/css/home.css"/>
 </head>
 
 <body>
-    <p>This is an example of a simple HTML page with one paragraph.</p>
+    <div id="Panel">
+        <div class="dropdown">
+                <button class="buttonIcon" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    <i class="fa fa-user" style="font-size: 35px; color: white;"></i>                  
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                  <li><a href="#">Action</a></li>
+                  <li><a href="#">Another action</a></li>
+                  <li><a href="#">Something else here</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li><a href="#">Separated link</a></li>
+                </ul>
+        </div>
+    </div>
+    
+    <div>
+        <p id="Title">LearnTheCall</p>
+    </div>
+        
+    <div id='GameContainer'>
+        <div class="GameItem">
+            <img v-on:click="test" class="GameImg" src="https://images-eds-ssl.xboxlive.com/image?url=8Oaj9Ryq1G1_p3lLnXlsaZgGzAie6Mnu24_PawYuDYIoH77pJ.X5Z.MqQPibUVTcd8AHL7QDDpbRKUejQY0dIPy9FtLIOzo8QBZELPYQHJFw13C3prXXhqSc0NIkctvANAinKsbr2TLa1kROPNGykhRVnBTRoN67gSJq99gVDVzdTGoiE17THUZ8lM9nFJ_pdq32uYXUchqKYi.3NaC9LGgzDoibuv5fK.ZtGeZC3Ec-&h=1080&w=1920&format=jpg">            
+        </div>     
+        <div class="GameItem">
+            <img class="GameImg" src="https://www.numerama.com/content/uploads/2018/04/fortnite2fbattle-royale2ffortnite-sniper-1920x1080-f072fcef414cbe680e369a16a8d059d8a01c7636.jpg">            
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>    
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="/public/js/home.js"></script>
 </body>
 
 </html>

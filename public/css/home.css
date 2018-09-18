@@ -1,0 +1,38 @@
+#Title {
+    font-size: 50px;
+    text-align: center;
+    margin: 10px;
+}
+
+#Panel {
+    background-color: #424949;
+    height: 50px;
+}
+
+.buttonIcon {
+    position: relative;
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    background-color: #424949;
+    margin-top: 7px;
+    margin-left: 8px;
+}
+
+#GameContainer {
+    display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+
+.GameItem {
+    flex: 0 1 auto;
+    margin: 10px;
+}
+
+.GameImg {
+    width: 500px;
+    height: 400px;
+    border: black solid 1px;
+}
