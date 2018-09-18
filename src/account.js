@@ -1,7 +1,6 @@
 var schema = require('../index');
 var bcrypt = require('bcrypt');
 var userMongoose = require('../mongooseCon');
-var sql = require('../sql');
 
 exports.register = function register(username, email, password, callback) {
     bcrypt.hash(password, 5, function (err, hashedPassword) {
