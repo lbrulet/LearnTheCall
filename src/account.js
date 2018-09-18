@@ -20,7 +20,7 @@ exports.register = function register(username, email, password, callback) {
             user.save(function (err) {
                 if (err)
                     return callback(err);
-                console.log(user);                
+                console.log(user);
                 return callback();
             });
         });
@@ -40,6 +40,13 @@ exports.login = function login(username, password, callback) {
             if (!result)
                 return callback(Error("Bad password"));
             console.log("user: %s is connected", username);
+            userMongoose.User.find({}, function (err, users) {
+                var userMap = {};
+
+                users.forEach(function (user) {
+                    console.log(user);
+                });
+            });
             return callback(undefined);
         });
     });
