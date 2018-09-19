@@ -1,7 +1,4 @@
 var mongoose = require('mongoose');
-var schema = require('./src/userSchema');
-
-mongoose.model('User', schema.UserSchema);
 
 mongoose.connect('mongodb://corentin:corentin123@localhost:27017/LearnTheCall', { useNewUrlParser: true }, function (err) {
     if (err) {
@@ -9,5 +6,3 @@ mongoose.connect('mongodb://corentin:corentin123@localhost:27017/LearnTheCall', 
     }
     console.log("Connected on mongodb");
 });
-
-exports.User = mongoose.model('User');

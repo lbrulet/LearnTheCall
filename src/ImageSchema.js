@@ -8,3 +8,7 @@ exports.ImageSchema = new mongoose.Schema({
     responseFour: String,
     goodAnswer: String,
   }, { timestamps: true });
+
+let Image = mongoose.model('Image', ImageSchema);
+
+module.exports = { Image };
