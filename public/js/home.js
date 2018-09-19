@@ -1,3 +1,4 @@
+Vue.use(axios)
 
 var app = new Vue({
     el: '#GameContainer',
@@ -9,5 +10,21 @@ var app = new Vue({
         }
     }
 })
+
+new Vue({
+    el: '#TestBase',
+    data () {
+      return {
+        info: null
+      }
+    },
+    mounted () {
+      axios
+        .get('/api/get')
+        .then(response => (this.info = response))
+    }
+  })
+  
+
 
 $('.dropdown-toggle').dropdown('toggle')
