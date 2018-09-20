@@ -1,6 +1,7 @@
 var schema = require('../index');
 var bcrypt = require('bcrypt');
 var { User } = require('./userSchema');
+var { Image } = require('./ImageSchema');
 
 exports.register = function register(username, email, password, callback) {
     bcrypt.hash(password, 5, function (err, hashedPassword) {
@@ -53,12 +54,27 @@ exports.login = function login(username, password, callback) {
 }
 
 exports.getAllImage = function getAllImage(callback) {
-    Image.find({}, function (err, users) {
-        if (err)
+    /*
+    let test = new Image()
+
+    test.image = "ererlererl";
+    test.responseOne = "erer";
+    test.responseTwo = "lmvmv";
+    test.responseThree = "qqssqqs";
+    test.responseFour = "eererer";
+    test.goodAnswer = "eerre";
+
+    test.save
+    */
+    Image.find({}, function (err, data) {
+        if (err) {
+            console.log("err");
             return callback(err, undefined);
+        }
         var userMap = {};
-        users.forEach(function (user) {
-            userMap[user._id] = user;
+        data.forEach(function (data) {
+            console.log(data);
+            userMap[data._id] = data;
         });
         return callback(undefined, userMap);
     });
