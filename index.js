@@ -58,10 +58,12 @@ app.post('/api/login', function (req, res) {
 
 app.get('/api/getAllImage', function (req, res) {
     api.getAllImage(function (err, result) {
-        if (err)
+        if (err) {
+            console.log("error GetAllImage !");
             res.status(403).send({ message: "Error" });
-        else
+        } else {
             res.status(200).send({ message: result });
+        }
     });
 });
 

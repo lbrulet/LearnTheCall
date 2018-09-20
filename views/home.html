@@ -13,7 +13,7 @@
     <div id="Panel">
         <div class="dropdown">
                 <button class="buttonIcon" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                    <i class="fa fa-user" style="font-size: 35px; color: white;"></i>                  
+                    <i class="fa fa-user" style="font-size: 35px; color: white;"></i>
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                   <li><a href="#">Action</a></li>
@@ -25,11 +25,14 @@
         </div>
     </div>
     
-    <div>
+    <div id="app">
         <p id="Title">LearnTheCall</p>
+        <router-view></router-view>
     </div>
 
-    <div id="TestBase"> {{ info }} </div>
+    <div id="TestBase">
+        <p v-for="currency in info"> {{ currency.image }} </p>
+    </div>
 
     <div id='GameContainer'>
         <div class="GameItem">

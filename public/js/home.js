@@ -1,30 +1,36 @@
-Vue.use(axios)
-
-var app = new Vue({
+new Vue({
     el: '#GameContainer',
     data: {
     },
     methods: {
         test: function() {
-            console.log("mdr");
+
         }
     }
 })
 
 new Vue({
     el: '#TestBase',
-    data () {
-      return {
-        info: null
-      }
+    data: {
+      info: null
     },
     mounted () {
       axios
-        .get('/api/get')
-        .then(response => (this.info = response))
+        .get('/api/getAllImage')
+        .then(response => (this.info = response.data.message))
     }
-  })
+})
   
-
-
 $('.dropdown-toggle').dropdown('toggle')
+
+let imageGame = document.getElementsByClassName("GameItem");
+
+imageGame[0].addEventListener("mouseover", function(event) {
+  event.target.style.opacity = 0.5;
+  event.target.style.cursor = "crosshair";
+});
+
+imageGame[0].addEventListener("mouseout", function(event) {
+  event.target.style.opacity = 1;
+  event.target.style.cursor = "default";  
+});

@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
+var ConMongoose = require('../mongooseCon');
 
-exports.ImageSchema = new mongoose.Schema({
+var ImageSchema = new mongoose.Schema({
     image: String,
     responseOne: String,
     responseTwo: String,
