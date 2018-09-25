@@ -71,11 +71,6 @@ exports.getAllImage = function getAllImage(callback) {
             console.log("err");
             return callback(err, undefined);
         }
-        var userMap = {};
-        data.forEach(function (data) {
-            console.log(data);
-            userMap[data._id] = data;
-        });
-        return callback(undefined, userMap);
+        return callback(undefined, data);
     });
 }

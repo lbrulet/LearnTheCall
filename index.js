@@ -26,6 +26,10 @@ app.get('/home', function (req, res) {
     res.render('home');
 });
 
+app.get('/game', function (req, res) {
+    res.render('game');
+});
+
 app.post('/login', function (req, res) {
     res.render('login');
 });
