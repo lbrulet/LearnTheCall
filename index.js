@@ -4,7 +4,6 @@ var express = require("express");
 var ejs = require("ejs");
 var path = require("path");
 var api = require('./src/account');
-
 var app = express();
 
 app.use(bodyParser.json());
@@ -16,6 +15,15 @@ app.set('view engine', 'html');
 app.use('/public', express.static(path.join(__dirname, '/public')));
 app.get('/', function (req, res) {
     res.redirect('login');
+});
+
+app.get('/api/allUsers', function (req, res) {
+    api.getAllUsers(function(err, users) {
+        if (err)
+            res.status(403).send({message: "error"});
+        else
+            res.status(200).send({message: users});
+    });
 });
 
 app.get('/login', function (req, res) {
