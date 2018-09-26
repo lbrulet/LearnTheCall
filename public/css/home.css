@@ -2,6 +2,7 @@
     font-size: 50px;
     text-align: center;
     margin: 10px;
+    font-family: "times new roman", times, serif;
 }
 
 #Panel {
@@ -32,7 +33,7 @@
 }
 
 .GameImg {
-    width: 500px;
-    height: 400px;
+    width: 800px;
+    height: 450px;
     border: black solid 1px;
 }

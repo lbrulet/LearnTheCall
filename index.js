@@ -26,6 +26,15 @@ app.get('/', function (req, res) {
     res.redirect('login');
 });
 
+app.get('/api/allUsers', function (req, res) {
+    api.getAllUsers(function(err, users) {
+        if (err)
+            res.status(403).send({message: "error"});
+        else
+            res.status(200).send({message: users});
+    });
+});
+
 app.get('/login', function (req, res) {
     res.render('login');
 });

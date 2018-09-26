@@ -4,8 +4,8 @@ var apiFunction = require('./apiFunction');
 
 // middleware that is specific to this router
 router.use(function timeLog(req, res, next) {
-  console.log('Time: ', Date.now());
-  next();
+    console.log('Time: ', Date.now());
+    next();
 });
 
 router.post('/login', function (req, res) {
@@ -23,6 +23,24 @@ router.post('/login', function (req, res) {
                 console.log(Bearer);
                 res.status(200).send({ Bearer });
             }
+        });
+    }
+});
+
+router.post('/addImage', function (req, res) {
+    if (req.body.image.name == undefined || req.body.image.name.length == 0 ||
+        req.body.image.responseOne == undefined || req.body.image.responseOne.length == 0 ||
+        req.body.image.responseTwo == undefined || req.body.image.responseTwo.length == 0 ||
+        req.body.image.responseThree == undefined || req.body.image.responseThree.length == 0 ||
+        req.body.image.responseFour == undefined || req.body.image.responseFour.length == 0 ||
+        req.body.image.goodAnswer == undefined || req.body.image.goodAnswer.length == 0)
+        res.status(403).send({ message: "error" });
+    else {
+        apiFunction.addImage(req.body.image.name, req.body.image.responseOne, responseTwo, responseThree, responseFour, goodAnswer, function (err) {
+            if (err)
+                res.status(403).send({ message: "error" });
+            else
+                res.status(200).send({message: "SUCCESS"});
         });
     }
 });
