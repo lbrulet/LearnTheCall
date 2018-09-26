@@ -32,7 +32,7 @@ router.post('/addImage', function (req, res) {
         req.body.image.goodAnswer == undefined || req.body.image.goodAnswer.length == 0)
         res.status(403).send({ message: "error" });
     else {
-        apiFunction.addImage(req.body.image.name, req.body.image.responseOne, req.body.image.responseTwo, req.body.image.responseThree, req.body.image.responseFour, req.body.image.goodAnswer, function (err) {
+        apiFunction.addImage(req.body.image, function (err) {
             if (err)
                 res.status(403).send({ message: "error" });
             else

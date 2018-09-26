@@ -47,19 +47,19 @@ exports.login = function login(username, password, callback) {
     });
 }
 
-exports.addImage = function addImage(name, one, two, three, four, goodAnswer, callback) {
-    Image.findOne({ image: name }, function (err, result)  {
+exports.addImage = function addImage(newImage, callback) {
+    Image.findOne({ image: newImage.name }, function (err, result)  {
         if (err)
             return callback(err);
         if (result)
             return callback(Error("Image already existed"));
         image = new Image();
-        image.image = name;
-        image.responseOne = one;
-        image.responseTwo = two;
-        image.responseThree = three;
-        image.responseFour = four;
-        image.goodAnswer = goodAnswer;
+        image.image = newImage.name;
+        image.responseOne = newImage.responseOne;
+        image.responseTwo = newImage.responseTwo;
+        image.responseThree = newImage.responseThree;
+        image.responseFour = newImage.responseFour;
+        image.goodAnswer = newImage.goodAnswer;
         image.save(function (err) {
             if (err)
                 return callback(err);
