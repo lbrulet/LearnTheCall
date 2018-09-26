@@ -33,7 +33,7 @@ function login() {
     let usernameLogin = $("#username-login").val();
     let password = $("#password-login").val();
     var person = { usernameLogin: usernameLogin, password: password };    
-    $.post("/api/login", { person }, function (data) {
+    $.post("/api/login", { usernameLogin, password }, function (data) {
     }).done(function(data) {
         $(location).attr('href', '/home');
     }).fail(function (data, textStatus, xhr) {
