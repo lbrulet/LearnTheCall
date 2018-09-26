@@ -19,13 +19,12 @@ router.post('/login', function (req, res) {
                 res.status(403).send({ message: 'error' });
             }
             else {
-                console.log("success");
-                console.log(Bearer);
                 res.status(200).send({ Bearer });
             }
         });
     }
 });
+
 
 router.post('/addImage', function (req, res) {
     if (req.body.image.name == undefined || req.body.image.name.length == 0 ||
@@ -36,16 +35,16 @@ router.post('/addImage', function (req, res) {
         req.body.image.goodAnswer == undefined || req.body.image.goodAnswer.length == 0)
         res.status(403).send({ message: "error" });
     else {
-        apiFunction.addImage(req.body.image.name, req.body.image.responseOne, responseTwo, responseThree, responseFour, goodAnswer, function (err) {
+        apiFunction.addImage(req.body.image.name, req.body.image.responseOne, req.body.image.responseTwo, req.body.image.responseThree, req.body.image.responseFour, req.body.image.goodAnswer, function (err) {
             if (err)
                 res.status(403).send({ message: "error" });
             else
-                res.status(200).send({message: "SUCCESS"});
+                res.status(200).send({ message: "SUCCESS" });
         });
     }
 });
 
-router.post('/getAllImage', function (req, res) {
+router.get('/getAllImage', function (req, res) {
     apiFunction.getAllImage(function (err, result) {
         if (err)
             res.status(403).send({ message: "Error" });
@@ -54,8 +53,16 @@ router.post('/getAllImage', function (req, res) {
     });
 });
 
+router.get('/allUsers', function (req, res) {
+    api.getAllUsers(function (err, users) {
+        if (err)
+            res.status(403).send({ message: "error" });
+        else
+            res.status(200).send({ message: users });
+    });
+});
+
 router.post('/register', function (req, res) {
-    console.log("register");
     if (req.body.person.usernameRegister == undefined || req.body.person.usernameRegister.length == 0 ||
         req.body.person.email == undefined || req.body.person.email.length == 0 ||
         req.body.person.password == undefined || req.body.person.password.length == 0 ||

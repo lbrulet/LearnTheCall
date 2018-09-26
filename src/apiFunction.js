@@ -51,7 +51,7 @@ exports.addImage = function addImage(name, one, two, three, four, goodAnswer, ca
     Image.findOne({ image: name }, function (err, result)  {
         if (err)
             return callback(err);
-        if (result.length > 0)
+        if (result)
             return callback(Error("Image already existed"));
         image = new Image();
         image.image = name;
