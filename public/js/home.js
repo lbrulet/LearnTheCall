@@ -4,23 +4,11 @@ new Vue({
     },
     methods: {
         test: function() {
-
+          window.location.href = '/game';
         }
     }
 })
 
-new Vue({
-    el: '#TestBase',
-    data: {
-      info: null
-    },
-    mounted () {
-      axios
-        .get('/api/getAllImage')
-        .then(response => (this.info = response.data.message))
-    }
-})
-  
 $('.dropdown-toggle').dropdown('toggle')
 
 let imageGame = document.getElementsByClassName("GameItem");

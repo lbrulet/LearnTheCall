@@ -28,15 +28,6 @@ exports.register = function register(username, email, password, callback) {
     });
 }
 
-exports.getAllUsers = function getAllUsers(callback) {
-    User.find({},function(err, result) {
-      if (err)
-        return callback(err, undefined);
-        console.log(result);
-    return callback(undefined, result);
-    });
-}
-
 exports.login = function login(username, password, callback) {
     User.findOne({ username: username }, 'password email', function (err, result) {
         if (err)
@@ -61,6 +52,17 @@ exports.login = function login(username, password, callback) {
         });
     });
 }
+
+exports.getAllUsers = function getAllUsers(callback) {
+    User.find({},function(err, result) {
+      if (err) {
+        console.log(result);          
+        return callback(err, undefined);
+      }
+    return callback(undefined, result);
+    });
+}
+
 
 exports.getAllImage = function getAllImage(callback) {
     /*
