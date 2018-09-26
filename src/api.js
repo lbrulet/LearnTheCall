@@ -22,7 +22,6 @@ router.post('/login', function (req, res) {
     }
 });
 
-
 router.post('/addImage', function (req, res) {
     if (req.body.image.name == undefined || req.body.image.name.length == 0 ||
         req.body.image.responseOne == undefined || req.body.image.responseOne.length == 0 ||
@@ -51,7 +50,7 @@ router.get('/getAllImage', function (req, res) {
 });
 
 router.get('/allUsers', function (req, res) {
-    api.getAllUsers(function (err, users) {
+    apiFunction.getAllUsers(function (err, users) {
         if (err)
             res.status(403).send({ message: "error" });
         else
