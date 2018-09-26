@@ -14,13 +14,10 @@ router.post('/login', function (req, res) {
         res.status(403).send({ message: 'error' });
     else {
         apiFunction.login(req.body.usernameLogin, req.body.password, function (err, Bearer) {
-            if (err) {
-                console.log(err);
+            if (err)
                 res.status(403).send({ message: 'error' });
-            }
-            else {
+            else
                 res.status(200).send({ Bearer });
-            }
         });
     }
 });

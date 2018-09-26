@@ -70,10 +70,8 @@ exports.addImage = function addImage(name, one, two, three, four, goodAnswer, ca
 
 exports.getAllUsers = function getAllUsers(callback) {
     User.find({},function(err, result) {
-      if (err) {
-        console.log(result);          
+      if (err)
         return callback(err, undefined);
-      }
     return callback(undefined, result);
     });
 }
@@ -81,9 +79,8 @@ exports.getAllUsers = function getAllUsers(callback) {
 
 exports.getAllImage = function getAllImage(callback) {
     Image.find({}, function (err, data) {
-        if (err) {
+        if (err)
             return callback(err, undefined);
-        }
         return callback(undefined, data);
     });
 }
