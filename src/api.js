@@ -1,10 +1,13 @@
 var express = require('express');
 var router = express.Router();
 var apiFunction = require('./apiFunction');
+var colors = require('colors');
+var dateFormat = require('dateformat');
 
 // middleware that is specific to this router
 router.use(function timeLog(req, res, next) {
-    console.log('Time: ', Date.now());
+    var now = new Date();
+    console.log(colors.bold.green('[%s] : connexion to the api'), dateFormat(now, "yyyy-mm-dd, HH:MM:ss"));
     next();
 });
 
@@ -33,7 +36,7 @@ router.post('/addImage', function (req, res) {
     else {
         apiFunction.addImage(req.body.image, function (err) {
             if (err)
-                res.status(403).send({ message: "error" });
+                res.status(403).send({ message: err });
             else
                 res.status(200).send({ message: "SUCCESS" });
         });
