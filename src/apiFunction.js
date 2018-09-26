@@ -23,7 +23,6 @@ exports.register = function register(username, email, password, callback) {
             user.save(function (err) {
                 if (err)
                     return callback(err);
-                console.log(user);
                 return callback();
             });
         });
@@ -34,7 +33,6 @@ exports.getAllUsers = function getAllUsers(callback) {
     User.find({}, function (err, result) {
         if (err)
             return callback(err, undefined);
-        console.log(result);
         return callback(undefined, result);
     });
 }
@@ -45,13 +43,11 @@ exports.login = function login(username, password, callback) {
             return callback(err, undefined);
         if (resultU.length == 0)
             return callback(Error('Username does not exist'), undefined);
-        console.log(resultU._id);
         bcrypt.compare(password, resultU.password, function (err, result) {
             if (err)
                 return callback(err, undefined);
             if (!result)
                 return callback(Error("Bad password"), undefined);
-            console.log(resultU.id + " sexe");
             var payload = { id: resultU.id };
             var token = jwt.sign(payload, config.jwtOptions.secretOrKey);
             return callback(undefined, { Bearer: token });
@@ -82,15 +78,8 @@ exports.addImage = function addImage(name, one, two, three, four, goodAnswer, ca
 
 exports.getAllImage = function getAllImage(callback) {
     Image.find({}, function (err, data) {
-        if (err) {
-            console.log("err");
+        if (err)
             return callback(err, undefined);
-        }
-        var userMap = {};
-        data.forEach(function (data) {
-            console.log(data);
-            userMap[data._id] = data;
-        });
-        return callback(undefined, userMap);
+        return callback(undefined, data);
     });
 }
