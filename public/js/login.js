@@ -22,7 +22,7 @@ function register() {
     let passwordConfirm = $("#confirm-password-register").val();
     var person = { usernameRegister: usernameRegister, email: email, password: password, passwordConfirm: passwordConfirm };
     $.post("/api/register", { person }, function (data) {
-    }).done(function(data) {    
+    }).done(function (data) {
         $(location).attr('href', '/home');
     }).fail(function (data, textStatus, xhr) {
         $(location).attr('href', '/login');
@@ -32,11 +32,13 @@ function register() {
 function login() {
     let usernameLogin = $("#username-login").val();
     let password = $("#password-login").val();
-    var person = { usernameLogin: usernameLogin, password: password };    
+    var person = { usernameLogin: usernameLogin, password: password };
     $.post("/api/login", { usernameLogin, password }, function (data) {
-    }).done(function(data) {
+    }).done(function (data) {
+        alert("sexe");
         $(location).attr('href', '/home');
     }).fail(function (data, textStatus, xhr) {
+        alert("fail");
         $(location).attr('href', '/login');
     });
 }

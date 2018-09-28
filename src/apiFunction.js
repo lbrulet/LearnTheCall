@@ -29,6 +29,13 @@ exports.register = function register(username, email, password, callback) {
     });
 }
 
+exports.updatePassword = function updatePassword(password, passwordConfirm, callback) {
+    bcrypt.hash(passwordConfirm, 5, function(err, hashedPassword) {
+        if (err)
+            return callback(err);
+    })
+}
+
 exports.login = function login(username, password, callback) {
     User.findOne({ username: username }, 'password email', function (err, resultU) {
         if (err)

@@ -7,7 +7,8 @@ var dateFormat = require('dateformat');
 // middleware that is specific to this router
 router.use(function timeLog(req, res, next) {
     var now = new Date();
-    console.log(colors.bold.green('[%s] : connexion to the api'), dateFormat(now, "yyyy-mm-dd, HH:MM:ss"));
+    //    console.log(req);
+    console.log(colors.bold.green('[%s] : connexion to %s'), dateFormat(now, "yyyy-mm-dd, HH:MM:ss"), req.originalUrl);
     next();
 });
 
@@ -20,10 +21,26 @@ router.post('/login', function (req, res) {
             if (err)
                 res.status(403).send({ message: 'error' });
             else
-                res.status(200).send({ Bearer });
+                res.status(200).send({ Bearer });                
         });
     }
 });
+
+router.post('/updatePassword', function (req, res) {
+    if (req.body.password == undefined || req.body.password.length == 0 ||
+        req.body.passwordConfirm == undefined || req.body.passwordConfirm.length == 0)
+        res.status(403).send({ message: 'Password or password confirm are empty' });
+    if (req.body.password != req.body.passwordConfirm)
+    res.status(403).send({ message: 'Passwords are not the same' });
+    else {
+        apiFunction.updatePassword(req.body.password, req.body.passwordConfirm, function(err) {
+            if (err)
+                res.status(200).send({ message: err });
+            else
+                res.status(200).send({ message: 'SUCCESS' });
+        });
+    }
+})
 
 
 router.post('/addImage', function (req, res) {
