@@ -3,6 +3,7 @@ import Router from "vue-router";
 import LoginComponent from "./views/Login.vue";
 import Home from "./views/Home.vue";
 import store from "./store/store.js";
+import game from "./views/Game.vue";
 
 Vue.use(Router);
 
@@ -30,6 +31,18 @@ let router = new Router({
       path: "/home",
       name: "home",
       component: Home,
+      beforeEnter: (to, from, next) => {
+        if (store.state.token == null) {
+          next({ path: "/login" });
+        } else {
+          next();
+        }
+      }
+    },
+    {
+      path: "/game",
+      name: "game",
+      component: game,
       beforeEnter: (to, from, next) => {
         if (store.state.token == null) {
           next({ path: "/login" });
