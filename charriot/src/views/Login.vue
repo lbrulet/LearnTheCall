@@ -1,4 +1,5 @@
 <template id="login-form">
+<div id="login">
  <v-app>
    <div class="all">
      <div class="alert">
@@ -49,6 +50,7 @@
     </div>
    </div>
   </v-app>
+</div>
 </template>
 
 <script>

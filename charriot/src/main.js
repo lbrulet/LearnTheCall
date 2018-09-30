@@ -2,6 +2,8 @@ import '@babel/polyfill'
 import Vue from 'vue'
 import Vuex from "vuex";
 import App from './App.vue'
+import Login from './views/Login.vue'
+import Home from './views/Home.vue'
 import router from './router'
 import store from './store/store'
 import Vuetify from 'vuetify'
@@ -14,5 +16,7 @@ Vue.config.productionTip = false
 new Vue({
   router,
   store,
+  Login,
+  Home,
   render: h => h(App)
 }).$mount('#app')
