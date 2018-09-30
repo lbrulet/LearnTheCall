@@ -1,26 +1,52 @@
 <template>
     <div id="secure">
-        <h1>Secure Area</h1>
+        <h1>Bonjour {{ msg }}</h1>
         <p>
-            This is a secure area
+          Le bouton logout vous redirigera au login en enlevant le token, le username dans src/store/store.js
         </p>
+        <v-btn @click="logout()" color="error">Logout</v-btn>
     </div>
 </template>
 
 <script>
-    export default {
-        name: 'Secure',
-        data() {
-            return {};
-        }
+import store from "@/store/store.js";
+import axios from "axios";
+export default {
+  name: "Secure",
+  data() {
+    return {
+      msg: store.state.user,
+    };
+  },
+  mounted() {
+    const auth = {
+      headers: { Authorization: "bearer " + store.state.token }
+    };
+    axios
+      .get("http://54.38.184.10:5000/secret", auth)
+      .then(response => {
+        if (response.data.message == "Error") {
+          this.info = "Error";
+        } else console.log(response);
+      })
+      .catch(err => {
+        console.log(store.state);
+      });
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch("logout");
+      this.$router.replace({ name: "login" });
     }
+  }
+};
 </script>
 
 <style scoped>
-    #secure {
-        background-color: #FFFFFF;
-        border: 1px solid #CCCCCC;
-        padding: 20px;
-        margin-top: 10px;
-    }
+#secure {
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  padding: 20px;
+  margin-top: 10px;
+}
 </style>

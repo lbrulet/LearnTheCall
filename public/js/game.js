@@ -6,7 +6,7 @@ new Vue({
         i: 0
     },
     mounted () {
-        axios.get('/api/getAllImage').then(response => {
+        axios.get('/api/getAllImage', auth).then(response => {
             if (response.data.message == "Error") {
                 this.info = "Error";
             } else

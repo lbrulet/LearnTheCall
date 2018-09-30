@@ -52,6 +52,7 @@
 </template>
 
 <script>
+import store from "@/store/store.js";
 import axios from "axios";
 export default {
   name: "LoginForm",
@@ -95,10 +96,12 @@ export default {
             }
           )
           .then(response => {
+            store.dispatch("setToken", response.data.data.token);
+            store.dispatch("setUser", response.data.data.username);
             this.$router.replace({ name: "secure" });
           })
           .catch(err => {
-            alert(err);
+            this.alert = true;
           });
       }
     },
