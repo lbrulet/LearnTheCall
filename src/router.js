@@ -8,6 +8,7 @@ import game from "./views/Game.vue";
 Vue.use(Router);
 
 let router = new Router({
+  mode: 'history',
   routes: [
     {
       path: "/",
