@@ -17,34 +17,22 @@
       <img height="400" src="https://d1u5p3l4wpay3k.cloudfront.net/rlesports_gamepedia_en/a/a2/Northern_Gaminglogo_square.png">
     </div>
     <form class="login-right" @submit.prevent>
-      <div v-if="isRegister" class="h2">Login</div>
-      <div v-if="!isRegister" class="h3">Register</div>
+      <div class="h2">Login</div>
       <div class="form-group">
         <input type="text" id="username" placeholder="Username" v-model="username">
         <label for="username">Username</label>    
-      </div>
-      <div v-if="!isRegister" class="form-group">
-        <input type="text" id="email" placeholder="Email" v-model="email">
-        <label for="Email">Email</label>    
       </div>
       <div class="form-group">
         <input type="password" id="Password" placeholder="Password" v-model="password">
         <label for="Password">Password</label>    
       </div>
-      <div v-if="!isRegister" class="form-group">  
-        <input type="password" id="PasswordConfirm" placeholder="Password confirm" v-model="passwordConfirm">
-        <label for="Password">Password confirm</label>    
-      </div>
-      <div v-if="isRegister" class="checkbox-container">
+            <div class="checkbox-container">
         <input type="checkbox" v-model="rememberMe">
         <div class="text-checkbox">Remember me</div>
       </div> 
-      <div v-if="isRegister" class="button-area">
+      <div class="button-area">
         <button class="btn btn-primary pull-right" @click="login()" >Login</button>
         <button class="btn btn-primary pull-right" @click="register()" >Register ?</button>
-      </div>
-      <div v-if="!isRegister" class="button-area-register">
-        <button class="btn btn-primary pull-right" @click="signUp()" >Sign Up !</button>
       </div>
       </form>
     </div>
@@ -66,7 +54,6 @@ export default {
       email: "",
       password: "",
       passwordConfirm: "",
-      isRegister: true,
       alert: false,
       visibility: true
     };
@@ -108,8 +95,7 @@ export default {
       }
     },
     register() {
-      if (this.isRegister == true) this.isRegister = false;
-      else this.isRegister = true;
+      this.$router.replace({ name: "register" });
     },
     signUp() {
       if (this.alert == true) {
@@ -283,7 +269,7 @@ input:placeholder-shown + label {
 
 @font-face {
   font-family: Lemon;
-  src: url("../assets/LemonMilk.otf") format("opentype");
+  src: url("../../assets/LemonMilk.otf") format("opentype");
 }
 
 .h2 {
