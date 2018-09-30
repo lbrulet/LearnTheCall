@@ -142,7 +142,7 @@ export default {
             }
           )
           .then(response => {
-            this.$router.replace({ name: "secure" });
+            this.$router.replace({ name: "login" });
           })
           .catch(err => {
             console.log(err.message);
