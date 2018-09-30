@@ -3,6 +3,7 @@ var router = express.Router();
 var apiFunction = require('./apiFunction');
 var colors = require('colors');
 var dateFormat = require('dateformat');
+var passport = require('passport')
 
 // middleware that is specific to this router
 router.use(function timeLog(req, res, next) {
