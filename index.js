@@ -7,9 +7,18 @@ var ejs = require('ejs');
 var passport = require("passport");
 var config = require('./config');
 var api = require('./src/api');
+var cors = require('cors');
 var app = express();
 
 passport.use(config.strategy);
+
+var corsOptions = {
+  origin: '*',
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204 
+}
+
+app.use(cors(corsOptions));
+
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -42,6 +51,6 @@ app.get("/secret", passport.authenticate('jwt', { session: false }), function (r
     res.json({ message: "Success! You can not see this without a token" });
 });
 
-app.listen(4567, "localhost", function (req, res) {
-    console.log("Server launched on localhost:4567");
+app.listen(5000, "54.38.184.10", function (req, res) {
+    console.log("Server launched on 54.38.184.10:4567");
 });

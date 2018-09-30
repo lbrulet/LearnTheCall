@@ -13,6 +13,7 @@ router.use(function timeLog(req, res, next) {
 });
 
 router.post('/login', function (req, res) {
+console.log(req.body);
     if (req.body.usernameLogin == undefined || req.body.usernameLogin.length == 0 ||
         req.body.password == undefined || req.body.password.length == 0)
         res.status(403).send({ message: 'error' });
@@ -21,7 +22,7 @@ router.post('/login', function (req, res) {
             if (err)
                 res.status(403).send({ message: 'error' });
             else
-                res.status(200).send({ Bearer });                
+                res.status(200).send({ data: Bearer });
         });
     }
 });

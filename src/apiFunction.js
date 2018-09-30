@@ -49,7 +49,7 @@ exports.login = function login(username, password, callback) {
                 return callback(Error("Bad password"), undefined);
             var payload = { id: resultU.id };
             var token = jwt.sign(payload, config.jwtOptions.secretOrKey);
-            return callback(undefined, { Bearer: token });
+            return callback(undefined, { token, username });
         });
     });
 }
