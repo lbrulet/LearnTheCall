@@ -1,7 +1,6 @@
 import '@babel/polyfill'
 import Vue from 'vue'
 import Vuex from "vuex";
-import App from './App.vue'
 import Login from './views/Login.vue'
 import Home from './views/Home.vue'
 import router from './router'
@@ -18,5 +17,5 @@ new Vue({
   store,
   Login,
   Home,
-  render: h => h(App)
-}).$mount('#app')
+  render: h => h(Login)
+}).$mount('#login')
