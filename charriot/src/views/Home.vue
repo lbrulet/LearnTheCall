@@ -1,4 +1,5 @@
 <template>
+<v-app>
     <div id="secure">
         <h1>Bonjour {{ msg }}</h1>
         <p>
@@ -6,6 +7,7 @@
         </p>
         <v-btn @click="logout()" color="error">Logout</v-btn>
     </div>
+</v-app>
 </template>
 
 <script>
@@ -23,14 +25,12 @@ export default {
       headers: { Authorization: "bearer " + store.state.token }
     };
     axios
-      .get("http://54.38.184.10:5000/secret", auth)
+      .get("http://54.38.184.10:5000/api/allUsers", auth)
       .then(response => {
-        if (response.data.message == "Error")
-          this.info = "Error";
+        if (response.data.message == "Error") this.info = "Error";
+        console.log(response.data.message);
       })
-      .catch(err => {
-        console.log(store.state);
-      });
+      .catch(err => {});
   },
   methods: {
     logout() {

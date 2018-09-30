@@ -17,7 +17,14 @@ let router = new Router({
     {
       path: "/login",
       name: "login",
-      component: LoginComponent
+      component: LoginComponent,
+      beforeEnter: (to, from, next) => {
+        if (store.state.token != null) {
+          next({ path: "/home" });
+        } else {
+          next();
+        }
+      }
     },
     {
       path: "/home",
@@ -34,9 +41,9 @@ let router = new Router({
   ]
 });
 
-router.beforeEach((to, from, next) => {
-  //Si quelqu'un veut mettre un middleware avant chaque route.
-  next();
-});
+// router.beforeEach((to, from, next) => {
+//   //Si quelqu'un veut mettre un middleware avant chaque route.
+//   next();
+// });
 
 export default router;
