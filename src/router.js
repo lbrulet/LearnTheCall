@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
-import LoginComponent from "./views/Login.vue";
+import LoginComponent from "./views/Authentification/Login.vue";
+import RegisterComponent from "./views/Authentification/Register.vue";
 import Home from "./views/Home.vue";
 import store from "./store/store.js";
 import game from "./views/Game.vue";
@@ -20,6 +21,18 @@ let router = new Router({
       path: "/login",
       name: "login",
       component: LoginComponent,
+      beforeEnter: (to, from, next) => {
+        if (store.state.token != null) {
+          next({ path: "/home" });
+        } else {
+          next();
+        }
+      }
+    },
+    {
+      path: "/register",
+      name: "register",
+      component: RegisterComponent,
       beforeEnter: (to, from, next) => {
         if (store.state.token != null) {
           next({ path: "/home" });

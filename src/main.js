@@ -2,7 +2,8 @@ import '@babel/polyfill'
 import Vue from 'vue'
 import Vuex from "vuex";
 import App from './App.vue'
-import Login from './views/Login.vue'
+import Login from './views/Authentification/Login.vue'
+import Register from './views/Authentification/Register.vue'
 import Home from './views/Home.vue'
 import Game from './views/Game.vue'
 import router from './router'
@@ -18,6 +19,7 @@ new Vue({
   router,
   store,
   Login,
+  Register,
   Home,
   Game,
   render: h => h(App)
