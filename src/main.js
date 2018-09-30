@@ -4,6 +4,7 @@ import Vuex from "vuex";
 import App from './App.vue'
 import Login from './views/Login.vue'
 import Home from './views/Home.vue'
+import Game from './views/Game.vue'
 import router from './router'
 import store from './store/store'
 import Vuetify from 'vuetify'
@@ -18,5 +19,6 @@ new Vue({
   store,
   Login,
   Home,
+  Game,
   render: h => h(App)
 }).$mount('#app')
