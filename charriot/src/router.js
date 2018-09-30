@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
 import LoginComponent from "./views/Login.vue";
-import SecureComponent from "./views/Secure.vue";
+import Home from "./views/Home.vue";
 import store from "./store/store.js";
 
 Vue.use(Router);
@@ -20,9 +20,9 @@ let router = new Router({
       component: LoginComponent
     },
     {
-      path: "/secure",
-      name: "secure",
-      component: SecureComponent,
+      path: "/home",
+      name: "home",
+      component: Home,
       beforeEnter: (to, from, next) => {
         if (store.state.token == null) {
           next({ path: "/login" });

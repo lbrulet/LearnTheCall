@@ -24,27 +24,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use('/api', api);
 app.use(passport.initialize());
-app.use('/public', express.static(path.join(__dirname, '/public')));
-
-app.set('views', __dirname + '/views');
-app.set('view engine', 'html');
-
-app.engine('html', ejs.renderFile);
 
 app.get('/', function (req, res) {
-    res.redirect('login');
-});
-
-app.get('/login', function (req, res) {
-    res.render('login');
-});
-
-app.get('/home', function (req, res) {
-    res.render('home');
-});
-
-app.get('/game', function (req, res) {
-    res.render('game');
+    res.json({message: "API LEARN THE CALL @https://github.com/lbrulet/LearnTheCall"});
 });
 
 app.get("/secret", passport.authenticate('jwt', { session: false }), function (req, res) {

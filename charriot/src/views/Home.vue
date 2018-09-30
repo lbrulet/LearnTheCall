@@ -15,7 +15,7 @@ export default {
   name: "Secure",
   data() {
     return {
-      msg: store.state.user,
+      msg: store.state.user
     };
   },
   mounted() {
@@ -25,9 +25,8 @@ export default {
     axios
       .get("http://54.38.184.10:5000/secret", auth)
       .then(response => {
-        if (response.data.message == "Error") {
+        if (response.data.message == "Error")
           this.info = "Error";
-        } else console.log(response);
       })
       .catch(err => {
         console.log(store.state);

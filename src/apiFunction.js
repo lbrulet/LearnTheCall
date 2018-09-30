@@ -4,6 +4,7 @@ var bcrypt = require('bcrypt');
 var { User } = require('../models/userSchema');
 var config = require('../config');
 var { Image } = require('../models/ImageSchema');
+var passport = require('passport')
 
 exports.register = function register(username, email, password, callback) {
     bcrypt.hash(password, 5, function (err, hashedPassword) {

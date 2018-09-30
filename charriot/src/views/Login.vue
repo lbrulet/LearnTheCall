@@ -98,7 +98,7 @@ export default {
           .then(response => {
             store.dispatch("setToken", response.data.data.token);
             store.dispatch("setUser", response.data.data.username);
-            this.$router.replace({ name: "secure" });
+            this.$router.replace({ name: "home" });
           })
           .catch(err => {
             this.alert = true;
