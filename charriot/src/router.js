@@ -1,14 +1,15 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import LoginComponent from "./views/Login.vue"
-import SecureComponent from "./views/Secure.vue"
+import Vue from "vue";
+import Router from "vue-router";
+import LoginComponent from "./views/Login.vue";
+import SecureComponent from "./views/Secure.vue";
+import store from "./store/store.js";
 
-Vue.use(Router)
+Vue.use(Router);
 
-export default new Router({
+let router = new Router({
   routes: [
     {
-      path: '/',
+      path: "/",
       redirect: {
         name: "login"
       }
@@ -21,7 +22,21 @@ export default new Router({
     {
       path: "/secure",
       name: "secure",
-      component: SecureComponent
+      component: SecureComponent,
+      beforeEnter: (to, from, next) => {
+        if (store.state.token == null) {
+          next({ path: "/login" });
+        } else {
+          next();
+        }
+      }
     }
   ]
-})
+});
+
+router.beforeEach((to, from, next) => {
+  //Si quelqu'un veut mettre un middleware avant chaque route.
+  next();
+});
+
+export default router;
