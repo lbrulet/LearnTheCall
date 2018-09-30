@@ -147,6 +147,7 @@ export default {
           .catch(err => {
             console.log(err.message);
             this.alert = true;
+            this.$router.replace({ name: "login" });
           });
       }
       console.log("");
