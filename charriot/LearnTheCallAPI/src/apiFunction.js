@@ -4,7 +4,6 @@ var bcrypt = require('bcrypt');
 var { User } = require('../models/userSchema');
 var config = require('../config');
 var { Image } = require('../models/ImageSchema');
-var fs = require('fs');
 
 exports.register = function register(username, email, password, callback) {
     bcrypt.hash(password, 5, function (err, hashedPassword) {
@@ -41,8 +40,8 @@ exports.login = function login(username, password, callback) {
     User.findOne({ username: username }, 'password email', function (err, resultU) {
         if (err)
             return callback(err, undefined);
-        if (resultU.length == 0)
-            return callback(Error('Username does not exist'), undefined);
+	if (resultU == null)
+	    return callback(err, Error("username doesn't exist"));
         bcrypt.compare(password, resultU.password, function (err, result) {
             if (err)
                 return callback(err, undefined);
@@ -76,15 +75,6 @@ exports.addImage = function addImage(newImage, callback) {
     });
 }
 
-exports.deleteImage = function deleteImage(idImage, callback) {
-    Image.findOneAndRemove(idImage, function (err, result) {
-        if (err)
-            return callback(err);
-        else
-            return callback(undefined, "Image Deleted !");    
-    })
-}
-
 exports.getAllUsers = function getAllUsers(callback) {
     User.find({},function(err, result) {
       if (err)
@@ -99,17 +89,5 @@ exports.getAllImage = function getAllImage(callback) {
         if (err)
             return callback(err, undefined);
         return callback(undefined, data);
-    });
-}
-
-exports.getImageInFolder = function getImageInFolder(callback) {
-    fs.readdir("../ImageR6/", function(err, files) {
-        if (err) {
-           return callback(err, undefined);
-        }
-        files.forEach(function (file) {
-           console.log(file);
-        });
-        return callback(undefined, files);
     });
 }
