@@ -76,6 +76,15 @@ exports.addImage = function addImage(newImage, callback) {
     });
 }
 
+exports.deleteImage = function deleteImage(idImage, callback) {
+    Image.findOneAndRemove(idImage, function (err, result) {
+        if (err)
+            return callback(err);
+        else
+            return callback(undefined, "Image Deleted !");    
+    })
+}
+
 exports.getAllUsers = function getAllUsers(callback) {
     User.find({},function(err, result) {
       if (err)
