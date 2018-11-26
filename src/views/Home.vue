@@ -6,6 +6,9 @@
           Le bouton logout vous redirigera au login en enlevant le token, le username dans src/store/store.js
         </p>
         <v-btn @click="logout()" color="error">Logout</v-btn>
+
+        <router-link :to="{ name: 'game' }">Game</router-link>
+
     </div>
 </v-app>
 </template>

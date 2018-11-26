@@ -4,7 +4,7 @@ import LoginComponent from "./views/Authentification/Login.vue";
 import RegisterComponent from "./views/Authentification/Register.vue";
 import Home from "./views/Home.vue";
 import store from "./store/store.js";
-import game from "./views/Game.vue";
+import Game from "./views/Game.vue";
 
 Vue.use(Router);
 
@@ -59,7 +59,7 @@ let router = new Router({
     {
       path: "/game",
       name: "game",
-      component: game,
+      component: Game,
       beforeEnter: (to, from, next) => {
         if (store.state.token == null) {
           next({ path: "/login" });

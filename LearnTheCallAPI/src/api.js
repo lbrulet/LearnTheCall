@@ -81,6 +81,15 @@ router.post('/addImage', passport.authenticate('jwt', { session: false }), funct
     }
 });
 
+router.post('/deleteImage', passport.authenticate('jwt', {session: false}), function (req, res) {
+    apiFunction.deleteImage(req.body.idImage, function (err) {
+        if (err)
+            res.status(403).send({ message: err });
+        else
+            res.status(200).send({ message: "SUCCES Image Deleted !" });            
+    });
+});
+
 router.get('/getAllImage', passport.authenticate('jwt', { session: false }), function (req, res) {
     apiFunction.getAllImage(function (err, result) {
         if (err)
