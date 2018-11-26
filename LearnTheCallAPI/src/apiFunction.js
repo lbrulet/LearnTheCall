@@ -31,7 +31,7 @@ exports.register = function register(username, email, password, callback) {
 }
 
 exports.updatePassword = function updatePassword(password, passwordConfirm, callback) {
-    bcrypt.hash(passwordConfirm, 5, function(err, hashedPassword) {
+    bcrypt.hash(passwordConfirm, 5, function (err, hashedPassword) {
         if (err)
             return callback(err);
     })
@@ -56,7 +56,7 @@ exports.login = function login(username, password, callback) {
 }
 
 exports.addImage = function addImage(newImage, callback) {
-    Image.findOne({ image: newImage.name }, function (err, result)  {
+    Image.findOne({ image: newImage.name }, function (err, result) {
         if (err)
             return callback(err);
         if (result)
@@ -81,15 +81,15 @@ exports.deleteImage = function deleteImage(idImage, callback) {
         if (err)
             return callback(err);
         else
-            return callback(undefined, "Image Deleted !");    
+            return callback(undefined, "Image Deleted !");
     })
 }
 
 exports.getAllUsers = function getAllUsers(callback) {
-    User.find({},function(err, result) {
-      if (err)
-        return callback(err, undefined);
-    return callback(undefined, result);
+    User.find({}, function (err, result) {
+        if (err)
+            return callback(err, undefined);
+        return callback(undefined, result);
     });
 }
 
@@ -103,12 +103,13 @@ exports.getAllImage = function getAllImage(callback) {
 }
 
 exports.getImageInFolder = function getImageInFolder(callback) {
-    fs.readdir("../src/assets/ImageR6/", function(err, files) {
+    fs.readdir("../src/assets/ImageR6/", function (err, files) {
         if (err) {
-           return callback(err, undefined);
+            console.log(err)
+            return callback(err, undefined);
         }
         files.forEach(function (file) {
-           console.log(file);
+            console.log(file);
         });
         return callback(undefined, files);
     });
