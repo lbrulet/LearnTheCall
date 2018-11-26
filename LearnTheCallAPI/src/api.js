@@ -99,5 +99,15 @@ router.get('/allUsers', passport.authenticate('jwt', { session: false }), functi
     });
 });
 
+router.get('/getImageInFolder', passport.authenticate('jwt', { session: false}), function (req, res) {
+    apiFunction.getImageInFolder(function (err, result) {
+        if (err)
+            res.status(403).send({ message: "ERROR"});
+        else
+            res.status(200).send({message : result})     
+    });
+});
+
+router.post('/')
 
 module.exports = router;
