@@ -4,6 +4,7 @@ var bcrypt = require('bcrypt');
 var { User } = require('../models/userSchema');
 var config = require('../config');
 var { Image } = require('../models/ImageSchema');
+var fs = require('fs');
 
 exports.register = function register(username, email, password, callback) {
     bcrypt.hash(password, 5, function (err, hashedPassword) {
@@ -89,5 +90,17 @@ exports.getAllImage = function getAllImage(callback) {
         if (err)
             return callback(err, undefined);
         return callback(undefined, data);
+    });
+}
+
+exports.getImageInFolder = function getImageInFolder(callback) {
+    fs.readdir("../ImageR6/", function(err, files) {
+        if (err) {
+           return callback(err, undefined);
+        }
+        files.forEach(function (file) {
+           console.log(file);
+        });
+        return callback(undefined, files);
     });
 }

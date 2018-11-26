@@ -1,14 +1,13 @@
 {
-  "name": "ig_user",
-  "version": "1.0.0",
-  "description": "Interface user",
-  "main": "index.js",
+  "name": "learnthecall",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build"
   },
-  "author": "Luc Brulet",
-  "license": "ISC",
   "dependencies": {
+    "@babel/polyfill": "^7.0.0-rc.1",
     "axios": "^0.18.0",
     "bcrypt": "^3.0.0",
     "body-parser": "^1.18.3",
@@ -28,11 +27,25 @@
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
     "path": "^0.12.7",
-    "say": "^0.15.0",
     "vue": "^2.5.17",
-    "vue-cli": "^2.9.6",
     "vue-router": "^3.0.1",
+    "vuetify": "^1.2.5",
     "vuex": "^3.0.1",
     "vuex-persistedstate": "^2.5.4"
-  }
+  },
+  "devDependencies": {
+    "@vue/cli-service": "^3.0.4",
+    "vue-cli-plugin-vuetify": "^0.2.0",
+    "vue-template-compiler": "^2.5.17"
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
 }
