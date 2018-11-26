@@ -103,7 +103,7 @@ exports.getAllImage = function getAllImage(callback) {
 }
 
 exports.getImageInFolder = function getImageInFolder(callback) {
-    fs.readdir("../ImageR6/", function(err, files) {
+    fs.readdir("../src/assets/ImageR6/", function(err, files) {
         if (err) {
            return callback(err, undefined);
         }
