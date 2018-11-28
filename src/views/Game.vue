@@ -8,18 +8,18 @@
             <v-card-media v-bind:src="require(`@/assets/ImageR6/${activeImage}`)"></v-card-media>
           </v-flex>
           <v-flex>
-            <v-card @click.native="pickOneImage()" class="mb-2" height="156px" dark color="secondary">
-              <v-card-text class="pa-5 mb-2">3</v-card-text>
+            <v-card @click.native="pickOneImage()" class="mb-2" height="24%" dark color="secondary">
+              <v-card-text class="pa-5 mb-2">{{ responseImg }}</v-card-text>
             </v-card>
-            <v-card @click.native="pickOneImage()" class="mb-2" height="156px" dark color="secondary">
+            <v-card @click.native="pickOneImage()" class="mb-2" height="24%" dark color="secondary">
               <v-card-text class="mb-2">
                 <p class="text-xs-center">3</p>
               </v-card-text>
             </v-card>
-            <v-card @click.native="pickOneImage()" class="mb-2" height="156px" dark color="secondary">
+            <v-card @click.native="pickOneImage()" class="mb-2" height="24%" dark color="secondary">
               <v-card-text class="pa-5 mb-2">3</v-card-text>
             </v-card>
-            <v-card @click.native="pickOneImage()" class="mb-2" height="156px" dark color="secondary">
+            <v-card @click.native="pickOneImage()" class="mb-2" height="24%" dark color="secondary">
               <v-card-text class="pa-5 mb-2">3</v-card-text>
             </v-card>
           </v-flex>
@@ -52,6 +52,7 @@ export default {
   data() {
     return {
       allImages: [],
+      responseImg: "",
       activeImage: "loading.jpg"
     };
   },
@@ -77,11 +78,9 @@ export default {
       if (this.allImages.length > 0) {
         let i = this.randomNumber(this.allImages.length);
         let stock = this.allImages[i];
-        console.log(this.allImages);
         this.allImages.splice(this.allImages.indexOf(stock), 1);
-        console.log(this.allImages);
         this.activeImage = stock;
-        console.log(this.activeImage);
+        console.log("stock = " + stock)
         this.getThisImage(stock);
       } else {
         console.log("Il n'y a plus d'images a afficher !");
@@ -99,11 +98,15 @@ export default {
         .then(response => {
           if (response.data.message == "Error") {
             console.log("Error to get this Image !");
+            this.responseImg = "Nothing"
           } else {
-            console.log(response.data.message);
+            this.responseImg = response.data.message.goodAnswer
+            console.log(this.responseImg);
           }
         })
-        .catch(err => {});
+        .catch(err => {
+          console.log(err)
+        });
     },
     getWrongAnswer() {
       var tab = wrongAnswer.slice();
