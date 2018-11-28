@@ -114,3 +114,13 @@ exports.getImageInFolder = function getImageInFolder(callback) {
         return callback(undefined, files);
     });
 }
+
+exports.getThisImage = function getThisImage(ImageName, callback) {
+    Image.findOne({'image':ImageName}, function (err, result) {
+      if (err) {
+        return callback(err);
+      } else {
+        return callback(undefined, result);
+      }
+    });
+}

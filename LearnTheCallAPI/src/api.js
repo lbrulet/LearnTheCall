@@ -113,7 +113,16 @@ router.get('/getImageInFolder', passport.authenticate('jwt', { session: false}),
         if (err)
             res.status(403).send({ message: "ERROR"});
         else
-            res.status(200).send({message : result})     
+            res.status(200).send({message: result});     
+    });
+});
+
+router.get('/getThisImage', function (req, res) {
+    apiFunction.getThisImage(function (err, result) {
+        if (err)
+            res.status(403).send({message: err});
+        else
+            res.status(200).send({message: result});    
     });
 });
 
