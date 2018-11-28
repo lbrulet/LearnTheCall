@@ -62,7 +62,6 @@ router.post('/updatePassword', function (req, res) {
     }
 })
 
-
 router.post('/addImage', /*passport.authenticate('jwt', { session: false }),*/ function (req, res) {
     if (req.body.image.name == undefined || req.body.image.name.length == 0 ||
         req.body.image.responseOne == undefined || req.body.image.responseOne.length == 0 ||
