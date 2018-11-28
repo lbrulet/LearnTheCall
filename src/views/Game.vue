@@ -8,21 +8,20 @@
             <v-card-media v-bind:src="require(`@/assets/ImageR6/${activeImage}`)"></v-card-media>
           </v-flex>
           <v-flex>
-            <v-card class="mb-2" height="156px" dark color="secondary">
+            <v-card @click.native="pickOneImage()" class="mb-2" height="156px" dark color="secondary">
               <v-card-text class="pa-5 mb-2">3</v-card-text>
             </v-card>
-            <v-card class="mb-2" height="156px" dark color="secondary">
+            <v-card @click.native="pickOneImage()" class="mb-2" height="156px" dark color="secondary">
               <v-card-text class="mb-2">
                 <p class="text-xs-center">3</p>
               </v-card-text>
             </v-card>
-            <v-card class="mb-2" height="156px" dark color="secondary">
+            <v-card @click.native="pickOneImage()" class="mb-2" height="156px" dark color="secondary">
               <v-card-text class="pa-5 mb-2">3</v-card-text>
             </v-card>
-            <v-card class="mb-2" height="156px" dark color="secondary">
+            <v-card @click.native="pickOneImage()" class="mb-2" height="156px" dark color="secondary">
               <v-card-text class="pa-5 mb-2">3</v-card-text>
             </v-card>
-            <button v-on:click="pickOneImage()">click me</button>
           </v-flex>
         </v-layout>
       </v-container>
@@ -83,10 +82,10 @@ export default {
         console.log(this.allImages);
         this.activeImage = stock;
         console.log(this.activeImage);
+        this.getThisImage(stock);
       } else {
         console.log("Il n'y a plus d'images a afficher !");
       }
-      //this.getThisImage(stock);
     },
     randomNumber(max) {
       return Math.floor(Math.random() * (max - 1 + 1));
