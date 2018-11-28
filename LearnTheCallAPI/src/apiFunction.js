@@ -116,7 +116,6 @@ exports.getImageInFolder = function getImageInFolder(callback) {
 }
 
 exports.getThisImage = function getThisImage(ImageName, callback) {
-    console.log("ImageName : ", ImageName)
     Image.findOne({'image':ImageName}, function (err, result) {
       if (err || result == null) {
         return callback(undefined, "This image doesn't exist");
