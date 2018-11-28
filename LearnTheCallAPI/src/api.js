@@ -62,8 +62,7 @@ router.post('/updatePassword', function (req, res) {
     }
 })
 
-
-router.post('/addImage', passport.authenticate('jwt', { session: false }), function (req, res) {
+router.post('/addImage', /*passport.authenticate('jwt', { session: false }),*/ function (req, res) {
     if (req.body.image.name == undefined || req.body.image.name.length == 0 ||
         req.body.image.responseOne == undefined || req.body.image.responseOne.length == 0 ||
         req.body.image.responseTwo == undefined || req.body.image.responseTwo.length == 0 ||
@@ -81,7 +80,7 @@ router.post('/addImage', passport.authenticate('jwt', { session: false }), funct
     }
 });
 
-router.post('/deleteImage', passport.authenticate('jwt', {session: false}), function (req, res) {
+router.post('/deleteImage', function (req, res) {
     apiFunction.deleteImage(req.body.idImage, function (err) {
         if (err)
             res.status(403).send({ message: err });
@@ -113,7 +112,16 @@ router.get('/getImageInFolder', passport.authenticate('jwt', { session: false}),
         if (err)
             res.status(403).send({ message: "ERROR"});
         else
-            res.status(200).send({message : result})     
+            res.status(200).send({message: result});     
+    });
+});
+
+router.post('/getThisImage', function (req, res) {
+    apiFunction.getThisImage(req.body.body, function (err, result) {
+        if (err)
+            res.status(403).send({message: err});
+        else
+            res.status(200).send({message: result});    
     });
 });
 
