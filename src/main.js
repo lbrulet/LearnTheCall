@@ -6,6 +6,7 @@ import Login from './views/Authentification/Login.vue'
 import Register from './views/Authentification/Register.vue'
 import Home from './views/Home.vue'
 import Game from './views/Game.vue'
+import Menu from './views/menu.vue'
 import router from './router'
 import store from './store/store'
 import Vuetify from 'vuetify'
@@ -21,6 +22,7 @@ new Vue({
   Login,
   Register,
   Home,
+  Menu,
   Game,
   render: h => h(App)
 }).$mount('#app')
