@@ -3,7 +3,7 @@
 
     <h1>ldfldfdfldflfddlfdfl</h1>
 <div>
-    <img src="@/assets/ImageR6/chalet00.jpg" style="width: 500px; height: 500px;">
+    <img :src="require(`@/assets/ImageR6/${activeImage}`)" style="width: 500px; height: 500px;">
     <button v-on:click="pickOneImage()">click me</button>
 </div>
 </v-app>        
@@ -11,6 +11,9 @@
 
 
 <script>
+
+var wrongAnswer = ["BedRoom", "Wine Cellar", "Garage", "Fireplace HallWay", "Office", "Gaming Room", "Gaming Room Corridor", "Storage Room", "Cctv", "Snowmobile Garage"];
+
 import store from "@/store/store.js";
 import axios from "axios";
 
@@ -18,7 +21,8 @@ export default {
   name: "game",
   data() {
     return {
-      allImages: []
+      allImages: [],
+      activeImage: "loading.jpg",
     };
   },
   mounted() {
@@ -33,18 +37,25 @@ export default {
         } else {
           this.allImages = response.data.message;
           console.log(this.allImages);
+          this.pickOneImage();           
         }
       })
       .catch(err => {});
   },
   methods: {
     pickOneImage() {
-      const path = "@/assets/ImageR6/";
+      if (this.allImages.length > 0) {
       let i = this.randomNumber(this.allImages.length);
-      console.log("random number = ", i);
       let stock = this.allImages[i];
-      console.log(stock);
-      this.getThisImage(stock);
+      console.log(this.allImages);
+      this.allImages.splice(this.allImages.indexOf(stock), 1);
+      console.log(this.allImages);
+      this.activeImage = stock;
+      console.log(this.activeImage)
+      } else {
+        console.log("Il n'y a plus d'images a afficher !")
+      }
+      //this.getThisImage(stock);
     },
     randomNumber(max) {
       return Math.floor(Math.random() * (max - 1 + 1));
@@ -52,8 +63,8 @@ export default {
     getThisImage(ImageName) {
       axios
         .post("http://54.38.184.10:5000/api/getThisImage", {
-          //headers: { Authorization: "bearer " + store.state.token },
-          body: {ImageName}
+          headers: { Authorization: "bearer " + store.state.token },
+          body: ImageName
         })
         .then(response => {
           if (response.data.message == "Error") {
@@ -63,6 +74,9 @@ export default {
           }
         })
         .catch(err => {});
+    },
+    getWrongAnswer() {
+      var tab = wrongAnswer.slice();
     }
   }
 };
