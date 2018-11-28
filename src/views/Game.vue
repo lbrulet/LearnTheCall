@@ -52,8 +52,8 @@ export default {
     getThisImage(ImageName) {
       axios
         .post("http://54.38.184.10:5000/api/getThisImage", {
-          headers: { Authorization: "bearer " + store.state.token },
-          body: ImageName
+          //headers: { Authorization: "bearer " + store.state.token },
+          body: {ImageName}
         })
         .then(response => {
           if (response.data.message == "Error") {
