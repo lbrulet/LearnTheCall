@@ -8,6 +8,7 @@
         <v-btn @click="logout()" color="error">Logout</v-btn>
 
         <router-link :to="{ name: 'game' }">Game</router-link>
+        <router-link :to="{ name :'menu'}">Menu</router-link>
 
     </div>
 </v-app>
