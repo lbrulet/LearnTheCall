@@ -1,11 +1,34 @@
 <template>
-<v-app>
+  <main>
+    <v-app dark>
+      <h1>RAINBOW SIX SIEGE</h1>
+      <v-container grid-list-md text-xs-center>
+        <v-layout>
+          <v-flex xs8>
+            <v-card-media v-bind:src="require('@/assets/ImageR6/chalet00.jpg')"></v-card-media>
+          </v-flex>
 
-    <h1>ldfldfdfldflfddlfdfl</h1>
-<div>
-    <img src="@/assets/ImageR6/chalet00.jpg">
-</div>
-</v-app>        
+          <v-flex>
+            <v-card class="mb-2" height="156px" dark color="secondary">
+              <v-card-text class="pa-5 mb-2">3</v-card-text>
+            </v-card>
+            <v-card class="mb-2" height="156px" dark color="secondary">
+              <v-card-text class="mb-2">
+                <p class="text-xs-center">3</p>
+              </v-card-text>
+            </v-card>
+            <v-card class="mb-2" height="156px" dark color="secondary">
+              <v-card-text class="pa-5 mb-2">3</v-card-text>
+            </v-card>
+            <v-card class="mb-2" height="156px" dark color="secondary">
+              <v-card-text class="pa-5 mb-2">3</v-card-text>
+            </v-card>
+          </v-flex>
+          
+        </v-layout>
+      </v-container>
+    </v-app>
+  </main>
 </template>
 
 
@@ -53,4 +76,7 @@ export default {
 </script>
 
 <style>
+.card {
+  height: 100px;
+}
 </style>
