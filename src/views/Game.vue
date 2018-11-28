@@ -3,7 +3,7 @@
 
     <h1>ldfldfdfldflfddlfdfl</h1>
 <div>
-    <img src="@/assets/ImageR6/chalet00.jpg">
+    <img src="@/assets/ImageR6/chalet00.jpg" style="width: 500px; height: 500px;">
 </div>
 </v-app>        
 </template>
