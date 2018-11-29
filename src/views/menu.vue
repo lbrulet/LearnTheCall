@@ -39,7 +39,7 @@
               </div>
             </v-card-title>
             <v-card-actions>
-              <v-btn flat color="orange">Jouer</v-btn>
+              <v-btn :to="{ name: 'game' }" flat color="orange">Jouer</v-btn>
             </v-card-actions>
           </v-card>
         </v-flex>
