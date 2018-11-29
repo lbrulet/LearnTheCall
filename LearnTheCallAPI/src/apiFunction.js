@@ -55,6 +55,15 @@ exports.login = function login(username, password, callback) {
     });
 }
 
+exports.updateImage = function updateImage(imageObj, callback) {
+    Image.updateOne({ image: imageObj.name }, { $set: { goodAnswer: imageObj.goodAnswer } }, function(err, res) {
+	if (err)
+	    return callback(err)
+	console.log(res)
+	return callback(undefined, "Image updated!")
+    })
+}
+
 exports.addImage = function addImage(newImage, callback) {
     Image.findOne({ image: newImage.name }, function (err, result) {
         if (err)
@@ -116,8 +125,9 @@ exports.getImageInFolder = function getImageInFolder(callback) {
 }
 
 exports.getThisImage = function getThisImage(ImageName, callback) {
-    Image.findOne({'image':ImageName}, function (err, result) {
-      if (err || result == null) {
+    console.log(ImageName)
+    Image.findOne({image:ImageName}, function (err, result) {
+      if (err || !result) {
         return callback(undefined, "This image doesn't exist");
       } else {
         return callback(undefined, result);
