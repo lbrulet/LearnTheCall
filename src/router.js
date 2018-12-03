@@ -25,7 +25,7 @@ let router = new Router({
       component: LoginComponent,
       beforeEnter: (to, from, next) => {
         if (store.state.token != null) {
-          next({ path: "/home" });
+          next({ path: "/menu" });
         } else {
           next();
         }
@@ -38,7 +38,7 @@ let router = new Router({
       meta: {title: 'LearnTheCall - Register'},
       beforeEnter: (to, from, next) => {
         if (store.state.token != null) {
-          next({ path: "/home" });
+          next({ path: "/menu" });
         } else {
           next();
         }

@@ -2,24 +2,29 @@
   <main>
     <v-app dark>
       <h1>RAINBOW SIX SIEGE</h1>
-      <div id='GameContainer'>
+      <div id='GameContainer' v-if="!gameFinish">
         <div class="GameItem" style="height: auto; min-width: 0;">
             <img v-bind:src="require(`@/assets/ImageR6/${activeImage}`)" style="width: 900px; max-width: 100%; max-height: 500px; margin: 10px;">
         </div>
-        <div class="GameItem" style="margin-top: 12px;">
-            <div class="hoverOnResponse" @click="clickOnAnswer(allAnswer[0], 0)" :class="{badResponse: correct[0] == 1, goodResponse: correct[0] == 2}" style="width: 300px; height: 120px; line-height: 120px; border: 1px solid white; margin-bottom: 5px; margin-right: 30px;">
+        <div class="GameItem" style="margin-top: 12px; height: auto; min-width: 0;">
+            <div class="hoverOnResponse" @click="clickOnAnswer(allAnswer[0], 0)" :class="{badResponse: correct[0] == 1, goodResponse: correct[0] == 2}" style="width: 300px; height: 120px; line-height: 120px; border: 1px solid white; margin-bottom: 5px; margin-right: 30px; max-width: 100%; max-height: 120px;">
               <p style="text-align: center;">{{allAnswer[0]}}</p>
             </div>
-            <div class="hoverOnResponse" @click="clickOnAnswer(allAnswer[1], 1)" :class="{badResponse: correct[1] == 1, goodResponse: correct[1] == 2}" style="width: 300px; height: 120px; line-height: 120px; border: 1px solid white; margin-bottom: 5px; margin-right: 30px;">
+            <div class="hoverOnResponse" @click="clickOnAnswer(allAnswer[1], 1)" :class="{badResponse: correct[1] == 1, goodResponse: correct[1] == 2}" style="width: 300px; height: 120px; line-height: 120px; border: 1px solid white; margin-bottom: 5px; margin-right: 30px; max-width: 100%; max-height: 120px;">
               <p style="text-align: center;">{{allAnswer[1]}}</p>
             </div>
-            <div class="hoverOnResponse" @click="clickOnAnswer(allAnswer[2], 2)" :class="{badResponse: correct[2] == 1, goodResponse: correct[2] == 2}" style="width: 300px; height: 120px; line-height: 120px; border: 1px solid white; margin-bottom: 5px; margin-right: 30px;">
+            <div class="hoverOnResponse" @click="clickOnAnswer(allAnswer[2], 2)" :class="{badResponse: correct[2] == 1, goodResponse: correct[2] == 2}" style="width: 300px; height: 120px; line-height: 120px; border: 1px solid white; margin-bottom: 5px; margin-right: 30px; max-width: 100%; max-height: 120px;">
               <p style="text-align: center;">{{allAnswer[2]}}</p>
             </div>
-            <div class="hoverOnResponse" @click="clickOnAnswer(allAnswer[3], 3)" :class="{badResponse: correct[3] == 1, goodResponse: correct[3] == 2}" style="width: 300px; height: 120px; line-height: 120px; border: 1px solid white; margin-bottom: 5px; margin-right: 30px;">
+            <div class="hoverOnResponse" @click="clickOnAnswer(allAnswer[3], 3)" :class="{badResponse: correct[3] == 1, goodResponse: correct[3] == 2}" style="width: 300px; height: 120px; line-height: 120px; border: 1px solid white; margin-bottom: 5px; margin-right: 30px; max-width: 100%; max-height: 120px;">
               <p style="text-align: center;">{{allAnswer[3]}}</p>
             </div>
         </div>
+      </div>
+      <div v-else>
+        <p>c'est fini xd</p>
+        <h1>tu as fait {{userPoint}} bonne réponse !</h1>
+        <v-btn :to="{ name: 'menu' }" flat color="orange">Retour</v-btn>
       </div>
     </v-app>
   </main>
@@ -48,10 +53,11 @@ export default {
     return {
       allImages: [],
       allAnswer: [],
+      correct: [],      
       responseImg: "",
       activeImage: "chalet00.jpg",
-      correct: [],
-      test: 1
+      gameFinish: false,
+      userPoint: 0
     };
   },
   mounted() {
@@ -67,6 +73,7 @@ export default {
           this.allImages = response.data.message;
           console.log(this.allImages);
           this.pickOneImage();
+          this.gameFinish = false;
         }
       })
       .catch(err => {});
@@ -84,10 +91,14 @@ export default {
         this.getThisImage(stock);
       } else {
         console.log("Il n'y a plus d'images a afficher !");
+        this.gameFinish = true;
+        console.log("gamefinish =", this.gameFinish);
       }
     },
     clickOnAnswer(response, index) {
       console.log("la reponse cliqué est =", response);
+      if (response == this.responseImg)
+        this.userPoint += 1;
       var pos;
       for (pos = 0; pos < this.allAnswer.length; pos++) {
         if (this.responseImg == this.allAnswer[pos]) break;
@@ -100,7 +111,7 @@ export default {
       var self = this;
       setTimeout(function() {
         self.pickOneImage();
-      }, 1000);
+      }, 500);
     },
     randomNumber(max) {
       return Math.floor(Math.random() * (max - 1 + 1));
@@ -184,7 +195,7 @@ export default {
 #GameContainer {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: space-between;
 }
 
