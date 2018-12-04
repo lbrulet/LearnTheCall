@@ -2,23 +2,23 @@
   <main>
     <v-app dark>
       <h1>RAINBOW SIX SIEGE</h1>
-      <div id='GameContainer' v-if="!gameFinish">
-        <div class="GameItem" style="height: auto; min-width: 0;">
-            <img v-bind:src="require(`@/assets/ImageR6/${activeImage}`)" style="width: 900px; max-width: 100%; max-height: 500px; margin: 10px;">
+      <div id="GameContainer" v-if="!gameFinish">
+        <div class="GameItem">
+            <img v-bind:src="require(`@/assets/ImageR6/${activeImage}`)" style="max-width: 100%; width: 900px;">
         </div>
-        <div class="GameItem" style="margin-top: 12px; height: auto; min-width: 0;">
-            <div class="hoverOnResponse" @click="clickOnAnswer(allAnswer[0], 0)" :class="{badResponse: correct[0] == 1, goodResponse: correct[0] == 2}" style="width: 300px; height: 120px; line-height: 120px; border: 1px solid white; margin-bottom: 5px; margin-right: 30px; max-width: 100%; max-height: 120px;">
-              <p style="text-align: center;">{{allAnswer[0]}}</p>
-            </div>
-            <div class="hoverOnResponse" @click="clickOnAnswer(allAnswer[1], 1)" :class="{badResponse: correct[1] == 1, goodResponse: correct[1] == 2}" style="width: 300px; height: 120px; line-height: 120px; border: 1px solid white; margin-bottom: 5px; margin-right: 30px; max-width: 100%; max-height: 120px;">
-              <p style="text-align: center;">{{allAnswer[1]}}</p>
-            </div>
-            <div class="hoverOnResponse" @click="clickOnAnswer(allAnswer[2], 2)" :class="{badResponse: correct[2] == 1, goodResponse: correct[2] == 2}" style="width: 300px; height: 120px; line-height: 120px; border: 1px solid white; margin-bottom: 5px; margin-right: 30px; max-width: 100%; max-height: 120px;">
-              <p style="text-align: center;">{{allAnswer[2]}}</p>
-            </div>
-            <div class="hoverOnResponse" @click="clickOnAnswer(allAnswer[3], 3)" :class="{badResponse: correct[3] == 1, goodResponse: correct[3] == 2}" style="width: 300px; height: 120px; line-height: 120px; border: 1px solid white; margin-bottom: 5px; margin-right: 30px; max-width: 100%; max-height: 120px;">
-              <p style="text-align: center;">{{allAnswer[3]}}</p>
-            </div>
+        <div class="GameItem">
+          <div class="ResponseItem" @click="clickOnAnswer(allAnswer[0], 0)" :class="{badResponse: correct[0] == 1, goodResponse: correct[0] == 2}">
+            <p style="text-align: center;">{{allAnswer[0]}}</p>
+          </div>
+          <div class="ResponseItem" @click="clickOnAnswer(allAnswer[1], 1)" :class="{badResponse: correct[1] == 1, goodResponse: correct[1] == 2}" >
+            <p style="text-align: center;">{{allAnswer[1]}}</p>
+          </div>
+          <div class="ResponseItem" @click="clickOnAnswer(allAnswer[2], 2)" :class="{badResponse: correct[2] == 1, goodResponse: correct[2] == 2}">
+            <p style="text-align: center;">{{allAnswer[2]}}</p>
+          </div>
+          <div class="ResponseItem" @click="clickOnAnswer(allAnswer[3], 3)" :class="{badResponse: correct[3] == 1, goodResponse: correct[3] == 2}">
+            <p style="text-align: center;">{{allAnswer[3]}}</p>
+          </div>
         </div>
       </div>
       <div v-else>
@@ -46,6 +46,7 @@ var allWrongAnswer = [
 
 import store from "@/store/store.js";
 import axios from "axios";
+import Router from "vue-router";
 
 export default {
   name: "game",
@@ -53,7 +54,7 @@ export default {
     return {
       allImages: [],
       allAnswer: [],
-      correct: [],      
+      correct: [],
       responseImg: "",
       activeImage: "chalet00.jpg",
       gameFinish: false,
@@ -78,6 +79,7 @@ export default {
       })
       .catch(err => {});
     this.pickOneImage();
+    console.log(this.$router.currentRoute)
   },
   methods: {
     pickOneImage() {
@@ -97,8 +99,7 @@ export default {
     },
     clickOnAnswer(response, index) {
       console.log("la reponse cliqué est =", response);
-      if (response == this.responseImg)
-        this.userPoint += 1;
+      if (response == this.responseImg) this.userPoint += 1;
       var pos;
       for (pos = 0; pos < this.allAnswer.length; pos++) {
         if (this.responseImg == this.allAnswer[pos]) break;
@@ -163,10 +164,6 @@ export default {
 </script>
 
 <style>
-.card {
-  height: 100px;
-}
-
 /* Pour cacher la scrollbar de droite ... */
 ::-webkit-scrollbar {
   width: 0px;
@@ -186,7 +183,7 @@ export default {
   background-color: red !important;
 }
 
-.hoverOnResponse:hover {
+.ResponseItem:hover {
   background-color: black;
   opacity: 0.4;
 }
@@ -195,12 +192,19 @@ export default {
 #GameContainer {
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: space-around;
 }
 
-.GameItem {
-  flex: 0 1 auto;
+.gameItem {
+  display: flex;
+  flex-direction: column;
+}
+
+.ResponseItem {
+  border: 1px solid white;
+  font-size: 20px;
+  height: 100px;
 }
 /* FlexBox */
 </style>
