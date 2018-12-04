@@ -87,6 +87,14 @@ exports.addImage = function addImage(newImage, callback) {
     });
 }
 
+exports.updateImageUser = function updateImageUser(user, url, callback) {
+    User.findOneAndUpdate({ username: user }, { $set: { imageProfile: url } }, function (err) {
+        if (err)
+            return callback(err)
+        return callback(undefined)
+    })
+}
+
 exports.updateImage = function updateImage(imageObj, callback) {
     Image.updateOne({ image: imageObj.name }, { $set: { goodAnswer: imageObj.goodAnswer } }, function (err, res) {
         if (err)

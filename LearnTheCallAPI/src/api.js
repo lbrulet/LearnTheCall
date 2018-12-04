@@ -97,6 +97,15 @@ router.post('/deleteImage', function (req, res) {
     });
 });
 
+router.post('updateImageUser', function (req, res) {
+    apiFunction.updateImageUser(req.body.user, req.body.url, function (err) {
+        if (err)
+            res.status(403).send({ message: err })
+        else
+            res.status(200).send({ message: "SUCCESS" })
+    })
+})
+
 router.get('/getAllImage', passport.authenticate('jwt', { session: false }), function (req, res) {
     apiFunction.getAllImage(function (err, result) {
         if (err)
