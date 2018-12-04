@@ -3,10 +3,6 @@ var ConMongoose = require('../mongooseCon');
 
 var ImageSchema = new mongoose.Schema({
     image: String,
-    responseOne: String,
-    responseTwo: String,
-    responseThree: String,
-    responseFour: String,
     goodAnswer: String,
   }, { timestamps: true });
 

@@ -107,6 +107,15 @@ router.get('/getAllImage', passport.authenticate('jwt', { session: false }), fun
     });
 });
 
+router.post('/updateImage', function (req, res) {
+    apiFunction.updateImage(req.body.image, function (err, result) {
+	if (err)
+	    res.status(403).send({ message: err })
+	else
+	    res.status(200).send({ message: result })
+    })
+})
+
 router.get('/allUsers', passport.authenticate('jwt', { session: false }), function (req, res) {
     apiFunction.getAllUsers(function (err, users) {
         if (err)

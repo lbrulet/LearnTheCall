@@ -79,8 +79,7 @@
     <v-footer app dark height="auto" pl-0>
       <v-card class="flex" flat tile>
         <v-card-actions class="blue-grey darken-3 justify-center">
-          &copy;2018 —
-          <strong>Learn The Call</strong>
+          <strong>&copy; 2018 — Learn The Call</strong>
         </v-card-actions>
       </v-card>
     </v-footer>
