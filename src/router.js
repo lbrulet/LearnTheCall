@@ -2,7 +2,6 @@ import Vue from "vue";
 import Router from "vue-router";
 import LoginComponent from "./views/Authentification/Login.vue";
 import RegisterComponent from "./views/Authentification/Register.vue";
-import Home from "./views/Home.vue";
 import store from "./store/store.js";
 import Game from "./views/Game.vue";
 import Menu from './views/menu.vue'
@@ -39,19 +38,6 @@ let router = new Router({
       beforeEnter: (to, from, next) => {
         if (store.state.token != null) {
           next({ path: "/menu" });
-        } else {
-          next();
-        }
-      }
-    },
-    {
-      path: "/home",
-      name: "home",
-      component: Home,
-      meta: {title: 'LearnTheCall - Home'},
-      beforeEnter: (to, from, next) => {
-        if (store.state.token == null) {
-          next({ path: "/login" });
         } else {
           next();
         }
