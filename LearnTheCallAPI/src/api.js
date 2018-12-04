@@ -14,16 +14,16 @@ router.use(function timeLog(req, res, next) {
 });
 
 router.post('/login', function (req, res) {
-console.log(req.body);
+    console.log(req.body);
     if (req.body.usernameLogin == undefined || req.body.usernameLogin.length == 0 ||
         req.body.password == undefined || req.body.password.length == 0)
         res.status(403).send({ message: 'error' });
-        else {
-            apiFunction.login(req.body.usernameLogin, req.body.password, function (err, Bearer) {
+    else {
+        apiFunction.login(req.body.usernameLogin, req.body.password, function (err, Bearer) {
             if (err)
-            res.status(403).send({ message: 'error' });
+                res.status(403).send({ message: 'error' });
             else
-            res.status(200).send({ data: Bearer });
+                res.status(200).send({ data: Bearer });
         });
     }
 });
@@ -50,12 +50,12 @@ router.post('/updatePassword', function (req, res) {
     if (req.body.password == undefined || req.body.password.length == 0 ||
         req.body.passwordConfirm == undefined || req.body.passwordConfirm.length == 0)
         res.status(403).send({ message: 'Password or password confirm are empty' });
-        if (req.body.password != req.body.passwordConfirm)
+    if (req.body.password != req.body.passwordConfirm)
         res.status(403).send({ message: 'Passwords are not the same' });
-        else {
-            apiFunction.updatePassword(req.body.password, req.body.passwordConfirm, function(err) {
+    else {
+        apiFunction.updatePassword(req.body.password, req.body.passwordConfirm, function (err) {
             if (err)
-            res.status(200).send({ message: err });
+                res.status(200).send({ message: err });
             else
                 res.status(200).send({ message: 'SUCCESS' });
         });
@@ -80,12 +80,21 @@ router.post('/addImage', /*passport.authenticate('jwt', { session: false }),*/ f
     }
 });
 
+router.post('/updateImage', function (req, res) {
+    apiFunction.updateImage(req.body.image, function (err, result) {
+        if (err)
+            res.status(403).send({ message: err })
+        else
+            res.status(200).send({ message: result })
+    })
+})
+
 router.post('/deleteImage', function (req, res) {
     apiFunction.deleteImage(req.body.idImage, function (err) {
         if (err)
             res.status(403).send({ message: err });
         else
-            res.status(200).send({ message: "SUCCES Image Deleted !" });            
+            res.status(200).send({ message: "SUCCES Image Deleted !" });
     });
 });
 
@@ -107,21 +116,21 @@ router.get('/allUsers', passport.authenticate('jwt', { session: false }), functi
     });
 });
 
-router.get('/getImageInFolder', passport.authenticate('jwt', { session: false}), function (req, res) {
+router.get('/getImageInFolder', passport.authenticate('jwt', { session: false }), function (req, res) {
     apiFunction.getImageInFolder(function (err, result) {
         if (err)
-            res.status(403).send({ message: "ERROR"});
+            res.status(403).send({ message: "ERROR" });
         else
-            res.status(200).send({message: result});     
+            res.status(200).send({ message: result });
     });
 });
 
 router.post('/getThisImage', function (req, res) {
     apiFunction.getThisImage(req.body.body, function (err, result) {
         if (err)
-            res.status(403).send({message: err});
+            res.status(403).send({ message: err });
         else
-            res.status(200).send({message: result});    
+            res.status(200).send({ message: result });
     });
 });
 
