@@ -1,7 +1,6 @@
 <template>
   <v-app dark>
     <v-toolbar color="blue-grey darken-3">
-      <!-- <v-toolbar-side-icon></v-toolbar-side-icon> -->
       <v-avatar color="blue-grey lighten-1">
         <v-icon dark>account_circle</v-icon>
       </v-avatar>
@@ -83,6 +82,7 @@
 import store from "@/store/store.js";
 import axios from "axios";
 import FooterLTC from "./components/Footer";
+
 export default {
   name: "profile",
   components: { FooterLTC },

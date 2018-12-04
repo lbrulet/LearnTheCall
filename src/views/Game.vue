@@ -1,6 +1,7 @@
 <template>
   <main>
     <v-app dark>
+      <toolbar-l-t-c></toolbar-l-t-c>
       <h1>RAINBOW SIX SIEGE</h1>
       <div id="GameContainer" v-if="!gameFinish">
         <div class="GameItem">
@@ -47,9 +48,11 @@ var allWrongAnswer = [
 import store from "@/store/store.js";
 import axios from "axios";
 import Router from "vue-router";
+import ToolbarLTC from "@/views/Toolbar.vue";
 
 export default {
   name: "game",
+  components: { ToolbarLTC },
   data() {
     return {
       allImages: [],
@@ -79,7 +82,7 @@ export default {
       })
       .catch(err => {});
     this.pickOneImage();
-    console.log(this.$router.currentRoute)
+    console.log(this.$router.currentRoute);
   },
   methods: {
     pickOneImage() {
