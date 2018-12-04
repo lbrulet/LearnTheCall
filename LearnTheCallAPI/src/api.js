@@ -8,7 +8,6 @@ var passport = require('passport')
 // middleware that is specific to this router
 router.use(function timeLog(req, res, next) {
     var now = new Date();
-    //    console.log(req);
     console.log(colors.bold.green('[%s] : connexion to %s'), dateFormat(now, "yyyy-mm-dd, HH:MM:ss"), req.originalUrl);
     next();
 });

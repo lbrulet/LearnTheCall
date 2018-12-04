@@ -41,6 +41,8 @@ exports.login = function login(username, password, callback) {
     User.findOne({ username: username }, 'password email', function (err, resultU) {
         if (err)
             return callback(err, undefined);
+        if (!resultU)
+            return callback(Error('Username does not exist'), undefined)
         if (resultU.length == 0)
             return callback(Error('Username does not exist'), undefined);
         bcrypt.compare(password, resultU.password, function (err, result) {
