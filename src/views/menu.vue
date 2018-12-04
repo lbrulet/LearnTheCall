@@ -10,7 +10,7 @@
       <v-toolbar-items class="hidden-sm-and-down">
         <v-btn flat>Profile</v-btn>
         <v-btn flat>STATS</v-btn>
-        <v-btn flat>Logout</v-btn>
+        <v-btn @click="logout()" flat>Logout</v-btn>
       </v-toolbar-items>
     </v-toolbar>
 
@@ -112,6 +112,10 @@ export default {
     getProfile() {
       this.$store.dispatch("logout");
       this.$router.replace({ name: "login" });
+    },
+    logout() {
+      this.$store.dispatch("logout");
+      this.$router.replace({ name: "login" });
     }
   }
 };
@@ -125,6 +129,6 @@ export default {
   margin-top: 10px;
 }
 .rowC {
-  padding-top: 10%
+  padding-top: 10%;
 }
 </style>
