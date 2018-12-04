@@ -58,11 +58,11 @@ exports.login = function login(username, password, callback) {
 }
 
 exports.updateImage = function updateImage(imageObj, callback) {
-    Image.updateOne({ image: imageObj.name }, { $set: { goodAnswer: imageObj.goodAnswer } }, function(err, res) {
-	if (err)
-	    return callback(err)
-	console.log(res)
-	return callback(undefined, "Image updated!")
+    Image.updateOne({ image: imageObj.name }, { $set: { goodAnswer: imageObj.goodAnswer } }, function (err, res) {
+        if (err)
+            return callback(err)
+        console.log(res)
+        return callback(undefined, "Image updated!")
     })
 }
 
@@ -88,7 +88,7 @@ exports.addImage = function addImage(newImage, callback) {
 }
 
 exports.updateImage = function updateImage(imageObj, callback) {
-    Image.updateOne({ image: imageObj.name }, { $set: { goodAnswer: imageObj.goodAnswer } }, function(err, res) {
+    Image.updateOne({ image: imageObj.name }, { $set: { goodAnswer: imageObj.goodAnswer } }, function (err, res) {
         if (err)
             return callback(err)
         console.log(res)
@@ -135,12 +135,25 @@ exports.getImageInFolder = function getImageInFolder(callback) {
     });
 }
 
+exports.addMatch = function addMatch(object, user, callback) {
+    User.findOne({ username: user }, function (err, result) {
+        if (err)
+            return callback(err, undefined)
+        result.metadata.unshift(object)
+        User.findOneAndRemove({ username: user }, { $set: { metadata: result.metadata } }, function (err) {
+            if (err)
+                return callback(err, undefined)
+            return callback(undefined, "SUCCESS")
+        })
+    })
+}
+
 exports.getThisImage = function getThisImage(ImageName, callback) {
-    Image.findOne({image:ImageName}, function (err, result) {
-      if (err || !result) {
-        return callback(undefined, "This image doesn't exist");
-      } else {
-        return callback(undefined, result);
-      }
+    Image.findOne({ image: ImageName }, function (err, result) {
+        if (err || !result) {
+            return callback(undefined, "This image doesn't exist");
+        } else {
+            return callback(undefined, result);
+        }
     });
 }

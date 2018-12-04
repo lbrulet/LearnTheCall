@@ -106,12 +106,21 @@ router.get('/getAllImage', passport.authenticate('jwt', { session: false }), fun
     });
 });
 
+router.post('/addMatch', function (req, res) {
+    apiFunction.addMatch(req.body.match, req.body.user, function (err, result) {
+        if (err)
+            res.status(403).send({ mesagge: err })
+        else
+            res.status(200).send({ message: result })
+    })
+})
+
 router.post('/updateImage', function (req, res) {
     apiFunction.updateImage(req.body.image, function (err, result) {
-	if (err)
-	    res.status(403).send({ message: err })
-	else
-	    res.status(200).send({ message: result })
+        if (err)
+            res.status(403).send({ message: err })
+        else
+            res.status(200).send({ message: result })
     })
 })
 
