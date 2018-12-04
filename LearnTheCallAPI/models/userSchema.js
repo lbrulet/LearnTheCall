@@ -6,7 +6,8 @@ var UserSchema = new mongoose.Schema({
   username: String,
   email: String,
   password: String,
-  metadata: {required: false, type: Object}
+  imageProfile: { required: false, type: String },
+  metadata: { required: false, type: Object }
 }, { timestamps: true });
 
 UserSchema.methods.generateJWT = function () {
