@@ -70,6 +70,7 @@ export default {
     const auth = {
       headers: { Authorization: "bearer " + store.state.token }
     };
+    
     axios
       .get("http://54.38.184.10:5000/api/getImageInFolder", auth)
       .then(response => {
