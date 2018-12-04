@@ -1,18 +1,6 @@
 <template>
   <v-app dark>
-    <v-toolbar color="blue-grey darken-3">
-      <v-avatar color="blue-grey lighten-1">
-        <v-icon dark>account_circle</v-icon>
-      </v-avatar>
-      <v-toolbar-title textcolor="blue-grey lighten-1">Welcome {{msg}}</v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-toolbar-items class="hidden-sm-and-down">
-        <v-btn flat>Profile</v-btn>
-        <v-btn flat>STATS</v-btn>
-        <v-btn @click="logout()" flat>Logout</v-btn>
-      </v-toolbar-items>
-    </v-toolbar>
-
+    <toolbar-l-t-c></toolbar-l-t-c>
     <div class="rowC">
       <v-layout align-center justify-space-around fill-height>
         <v-flex xs sm3 ma-2>
@@ -81,11 +69,12 @@
 <script>
 import store from "@/store/store.js";
 import axios from "axios";
-import FooterLTC from "./components/Footer";
+import FooterLTC from "@/views/components/Footer";
+import ToolbarLTC from "@/views/components/Toolbar";
 
 export default {
   name: "profile",
-  components: { FooterLTC },
+  components: { FooterLTC, ToolbarLTC },
   data() {
     return {
       msg: store.state.user

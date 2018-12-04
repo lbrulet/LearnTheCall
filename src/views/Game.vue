@@ -27,6 +27,7 @@
         <h1>tu as fait {{userPoint}} bonne réponse !</h1>
         <v-btn :to="{ name: 'menu' }" flat color="orange">Retour</v-btn>
       </div>
+      <footer-l-t-c></footer-l-t-c>
     </v-app>
   </main>
 </template>
@@ -48,11 +49,12 @@ var allWrongAnswer = [
 import store from "@/store/store.js";
 import axios from "axios";
 import Router from "vue-router";
-import ToolbarLTC from "@/views/Toolbar.vue";
+import FooterLTC from "@/views/components/Footer";
+import ToolbarLTC from "@/views/components/Toolbar";
 
 export default {
   name: "game",
-  components: { ToolbarLTC },
+  components: { ToolbarLTC, FooterLTC },
   data() {
     return {
       allImages: [],
