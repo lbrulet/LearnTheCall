@@ -170,7 +170,7 @@ exports.getGameById = function getGameById(user, callback) {
     User.findOne({username: user}, function (err, result) {
         if (err)
             return callback(err, undefined);
-        else {
+        else if (result) {
             if (result.game)
                 return callback(undefined, result.game);
             else

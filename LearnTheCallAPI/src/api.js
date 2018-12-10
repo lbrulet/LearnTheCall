@@ -161,7 +161,7 @@ router.post('/getThisImage', function (req, res) {
 });
 
 router.post('/getGameById', function (req, res) {
-    apiFunction.getGameById(req.body.body, function (err, result) {
+    apiFunction.getGameById(req.body.user, function (err, result) {
         if (err)
             res.status(403).send({message: err});
         else
