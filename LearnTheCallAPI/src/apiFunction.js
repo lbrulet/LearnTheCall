@@ -165,3 +165,24 @@ exports.getThisImage = function getThisImage(ImageName, callback) {
         }
     });
 }
+
+exports.getGameById = function getGameById(user, callback) {
+    User.findOne({username: user}, function (err, result) {
+        if (err)
+            return callback(err, undefined);
+        else {
+            return callback(undefined, result.game);
+        };
+    });
+}
+
+exports.addGame = function addGame(user, game, callback) {
+    User.findOne({username: user}, function (err, result) {
+        if (err)
+            return callback(err, undefined);
+        else {
+            result.game.push(game);
+            return callback(undefined, "La partie a été ajouté !");
+        }    
+    });
+}

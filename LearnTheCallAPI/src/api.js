@@ -160,6 +160,24 @@ router.post('/getThisImage', function (req, res) {
     });
 });
 
+router.post('/getGameById', function (req, res) {
+    apiFunction.getGameById(req.body.body, function (err, result) {
+        if (err)
+            res.status(403).send({message: err});
+        else
+            res.status(200).send({message: result});    
+    });
+});
+
+router.post('/addGame', function (req, res) {
+    apiFunction.addGame(req.body.user, req.body.game, function(err, result) {
+        if (err)
+            res.status(403).send({message: err});
+        else
+            res.status(200).send({message: result});    
+    });
+});
+
 router.post('/')
 
 module.exports = router;

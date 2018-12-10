@@ -63,14 +63,16 @@ export default {
       responseImg: "",
       activeImage: "chalet00.jpg",
       gameFinish: false,
-      userPoint: 0
+      userPoint: 0,
+      obj: {},
+      party: []
     };
   },
   mounted() {
     const auth = {
       headers: { Authorization: "bearer " + store.state.token }
     };
-    
+
     axios
       .get("http://54.38.184.10:5000/api/getImageInFolder", auth)
       .then(response => {
@@ -100,12 +102,16 @@ export default {
       } else {
         console.log("Il n'y a plus d'images a afficher !");
         this.gameFinish = true;
-        console.log("gamefinish =", this.gameFinish);
+        this.postGame(this.party);
       }
     },
     clickOnAnswer(response, index) {
+      var correct = false;
       console.log("la reponse cliqué est =", response);
-      if (response == this.responseImg) this.userPoint += 1;
+      if (response == this.responseImg) {
+        this.userPoint += 1;
+        correct = true;
+      }
       var pos;
       for (pos = 0; pos < this.allAnswer.length; pos++) {
         if (this.responseImg == this.allAnswer[pos]) break;
@@ -115,6 +121,14 @@ export default {
         else this.correct.push("1");
       }
       console.log("correct == ", this.correct);
+      this.obj = {
+        userResponse: response,
+        goodResponse: this.responseImg,
+        answer: this.allAnswer,
+        correct: correct,
+        imageName: this.activeImage
+      };
+      this.party.push(this.obj);
       var self = this;
       setTimeout(function() {
         self.pickOneImage();
@@ -153,6 +167,20 @@ export default {
         .catch(err => {
           console.log(err);
         });
+    },
+    postGame(game) {
+      axios
+        .post("http://54.38.184.10.5000/api/addGame", {
+          headers: { Authorization: "bearer " + store.state.token },
+          user: store.state.user,
+          game: game
+        })
+        .then(response => {
+          console.log("addGame === ", response.data)
+        })
+        .catch(err => {
+          console.log(err);
+        })
     },
     getWrongAnswer() {
       var tab = allWrongAnswer.slice();

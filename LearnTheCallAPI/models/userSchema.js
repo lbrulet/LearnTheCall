@@ -7,7 +7,7 @@ var UserSchema = new mongoose.Schema({
   email: String,
   password: String,
   imageProfile: { required: false, type: String },
-  metadata: { required: false, type: Object }
+  game: { required: false, type: Array }
 }, { timestamps: true });
 
 UserSchema.methods.generateJWT = function () {
