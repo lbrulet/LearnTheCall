@@ -185,6 +185,7 @@ exports.addGame = function addGame(user, game, callback) {
             return callback(err, undefined);
         else {
             result.game.push(game);
+            result.save();
             return callback(undefined, "La partie a été ajouté !");
         }    
     });
