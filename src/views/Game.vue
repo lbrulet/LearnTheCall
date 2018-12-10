@@ -170,7 +170,7 @@ export default {
     },
     postGame(game) {
       axios
-        .post("http://54.38.184.10.5000/api/addGame", {
+        .post("http://54.38.184.10:5000/api/addGame", {
           headers: { Authorization: "bearer " + store.state.token },
           user: store.state.user,
           game: game
