@@ -171,7 +171,10 @@ exports.getGameById = function getGameById(user, callback) {
         if (err)
             return callback(err, undefined);
         else {
-            return callback(undefined, result.game);
+            if (result.game)
+                return callback(undefined, result.game);
+            else
+                return callback(undefined, "L'utilisateur n'a pas de partie !");    
         };
     });
 }
