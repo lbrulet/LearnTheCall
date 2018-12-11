@@ -167,14 +167,14 @@ exports.getThisImage = function getThisImage(ImageName, callback) {
 }
 
 exports.getGameById = function getGameById(user, callback) {
-    User.findOne({username: user}, function (err, result) {
+    User.findOne({ username: user }, function (err, result) {
         if (err)
             return callback(err, undefined);
         else if (result) {
             if (result.game)
                 return callback(undefined, result.game);
             else
-                return callback(undefined, "L'utilisateur n'a pas de partie !");    
+                return callback(undefined, "L'utilisateur n'a pas de partie !");
         }
         else {
             return callback(undefined, "L'utilisateur n'existe pas !");
@@ -182,18 +182,31 @@ exports.getGameById = function getGameById(user, callback) {
     });
 }
 
+exports.deleteGameById = function deleteGameById(user, callback) {
+    User.findOne({ username: user }, function (err, result) {
+        if (err) {
+            return callback(err, undefined);
+        } else if (result) {
+            result.game = undefined;
+            result.save();
+            return callback(undefined, "Les parties de l'utilisateur ", result.username, " ont été supprimés !");
+        } else {
+            return callback(undefined, "L'utilisateur n'existe pas !");
+        }
+    });
+}
+
 exports.addGame = function addGame(user, game, callback) {
-    User.findOne({username: user}, function (err, result) {
+    User.findOne({ username: user }, function (err, result) {
         if (err)
             return callback(err, undefined);
         else {
-	    console.log(game);
             if (game.length > 0) {
                 result.game.push(game);
                 result.save();
                 return callback(undefined, "La partie a été ajouté !");
             }
             return callback(undefined, "La partie a ajouté est vide elle n'a donc pas été ajouté !")
-        }    
+        }
     });
 }
