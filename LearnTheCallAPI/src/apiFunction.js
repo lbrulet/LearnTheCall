@@ -189,7 +189,8 @@ exports.deleteGameById = function deleteGameById(user, callback) {
         } else if (result) {
             result.game = undefined;
             result.save();
-            return callback(undefined, "Les parties de l'utilisateur ", result.username, " ont été supprimés !");
+            let str = "Les parties de l'utilisateur " + result.username + " ont été supprimés !";
+            return callback(undefined, str);
         } else {
             return callback(undefined, "L'utilisateur n'existe pas !");
         }
