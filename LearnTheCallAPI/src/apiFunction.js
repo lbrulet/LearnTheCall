@@ -202,7 +202,11 @@ exports.addGame = function addGame(user, game, callback) {
         if (err)
             return callback(err, undefined);
         else {
+	    if (game.length == 1 && game[0].total == -1) {
+		return callback(undefined, "La partie n'a pas été ajouté car elle n'est pas complète !")
+	    }
             if (game.length > 0) {
+		console.log(game);
                 result.game.push(game);
                 result.save();
                 return callback(undefined, "La partie a été ajouté !");
