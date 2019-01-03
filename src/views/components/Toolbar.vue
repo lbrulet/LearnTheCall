@@ -10,6 +10,7 @@
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-sm-and-down">
         <v-btn flat>Profile</v-btn>
+        <v-btn :to="{name:'historic'}" flat>HISTORY</v-btn>
         <v-btn flat>STATS</v-btn>
         <v-btn @click="logout()" flat>Logout</v-btn>
       </v-toolbar-items>
@@ -18,7 +19,6 @@
 
 <script>
 import store from "@/store/store.js";
-import axios from "axios";
 import Router from "vue-router";
 
 export default {

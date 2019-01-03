@@ -74,7 +74,7 @@ import ToolbarLTC from "@/views/components/Toolbar";
 
 export default {
   name: "profile",
-  components: { FooterLTC, ToolbarLTC },
+  components: {FooterLTC, ToolbarLTC},
   data() {
     return {
       msg: store.state.user

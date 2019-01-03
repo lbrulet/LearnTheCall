@@ -102,6 +102,9 @@ export default {
       } else {
         console.log("Il n'y a plus d'images a afficher !");
         this.gameFinish = true;
+        var bonus = {point: this.userPoint, total: this.party.length - 1, date: Date.now()};
+        if (this.party.length > 0)
+          this.party.push(bonus);
         this.postGame(this.party);
       }
     },
