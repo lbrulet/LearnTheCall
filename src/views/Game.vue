@@ -4,6 +4,9 @@
       <toolbar-l-t-c></toolbar-l-t-c>
       <h1>RAINBOW SIX SIEGE</h1>
       <div id="GameContainer" v-if="!gameFinish">
+        <div>
+          <p>{{this.countImage}} / {{this.allImages.length + this.countImage}}</p>
+        </div>
         <div class="GameItem">
             <img v-bind:src="require(`@/assets/ImageR6/${activeImage}`)" style="max-width: 100%; width: 900px;">
         </div>
@@ -65,7 +68,8 @@ export default {
       gameFinish: false,
       userPoint: 0,
       obj: {},
-      party: []
+      party: [],
+      countImage: 0
     };
   },
   mounted() {
@@ -99,6 +103,7 @@ export default {
         this.activeImage = stock;
         console.log("stock = " + stock);
         this.getThisImage(stock);
+        this.countImage += 1;
       } else {
         console.log("Il n'y a plus d'images a afficher !");
         this.gameFinish = true;
