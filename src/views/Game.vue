@@ -118,6 +118,7 @@ export default {
       console.log("la reponse cliqué est =", response);
       if (response == this.responseImg) {
         this.userPoint += 1;
+        console.log("RESULT", this.userPoint);
         correct = true;
       }
       var pos;

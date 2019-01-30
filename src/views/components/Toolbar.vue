@@ -9,7 +9,7 @@
       <v-toolbar-title v-if='currentRoute == "/menu"' textcolor="blue-grey lighten-1">Welcome {{msg}}</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-sm-and-down">
-        <v-btn flat>Profile</v-btn>
+        <v-btn :to="{name:'profile'}" flat>Profile</v-btn>
         <v-btn :to="{name:'historic'}" flat>HISTORY</v-btn>
         <v-btn flat>STATS</v-btn>
         <v-btn @click="logout()" flat>Logout</v-btn>

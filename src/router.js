@@ -5,6 +5,7 @@ import RegisterComponent from "./views/Authentification/Register.vue";
 import store from "./store/store.js";
 import Game from "./views/Game.vue";
 import Menu from './views/menu.vue'
+import Profile from './views/Profile.vue'
 import Historic from "./views/History.vue"
 
 Vue.use(Router);
@@ -62,6 +63,19 @@ let router = new Router({
       name: "menu",
       component: Menu,
       meta: {title: 'LearnTheCall - Menu'},
+      beforeEnter: (to, from, next) => {
+        if (store.state.token == null) {
+          next({ path: "/login" });
+        } else {
+          next();
+        }
+      }
+    },
+    {
+      path: "/profile",
+      name: "profile",
+      component: Profile,
+      meta: {title: 'LearnTheCall - Profile'},
       beforeEnter: (to, from, next) => {
         if (store.state.token == null) {
           next({ path: "/login" });
