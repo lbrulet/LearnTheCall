@@ -15,6 +15,10 @@ exports.default = {
     dataTable: {
         rowsPerPageText: 'Wierszy na stronie:'
     },
-    noDataText: 'Brak danych'
+    noDataText: 'Brak danych',
+    carousel: {
+        prev: 'Poprzedni obraz',
+        next: 'Następny obraz'
+    }
 };
 //# sourceMappingURL=pl.js.map

@@ -15,6 +15,10 @@ exports.default = {
     dataTable: {
         rowsPerPageText: 'Rijen per pagina:'
     },
-    noDataText: 'Geen gegevens beschikbaar'
+    noDataText: 'Geen gegevens beschikbaar',
+    carousel: {
+        prev: 'Vorige visual',
+        next: 'Volgende visueel'
+    }
 };
 //# sourceMappingURL=nl.js.map

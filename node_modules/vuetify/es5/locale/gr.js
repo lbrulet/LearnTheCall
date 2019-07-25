@@ -15,6 +15,10 @@ exports.default = {
     dataTable: {
         rowsPerPageText: 'Γραμμές ανά σελίδα:'
     },
-    noDataText: 'Χωρίς δεδομένα'
+    noDataText: 'Χωρίς δεδομένα',
+    carousel: {
+        prev: 'Προηγούμενη οπτική',
+        next: 'Επόμενη οπτική'
+    }
 };
 //# sourceMappingURL=gr.js.map

@@ -15,6 +15,10 @@ exports.default = {
     dataTable: {
         rowsPerPageText: 'Lignes par page:'
     },
-    noDataText: 'Aucune donnée disponible'
+    noDataText: 'Aucune donnée disponible',
+    carousel: {
+        prev: 'Visuel précédent',
+        next: 'Visuel suivant'
+    }
 };
 //# sourceMappingURL=fr.js.map

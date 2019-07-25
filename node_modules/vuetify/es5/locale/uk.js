@@ -15,6 +15,10 @@ exports.default = {
     dataTable: {
         rowsPerPageText: 'Рядків на сторінці:'
     },
-    noDataText: 'Немає даних для відображення'
+    noDataText: 'Немає даних для відображення',
+    carousel: {
+        prev: 'Попередній візуальний',
+        next: 'Наступний візуальнийa'
+    }
 };
 //# sourceMappingURL=uk.js.map

@@ -33,8 +33,12 @@ exports.default = _vue2.default.extend({
     },
     methods: {
         save: function save(value) {
+            var _this = this;
+
             this.originalValue = value;
-            this.isActive = false;
+            setTimeout(function () {
+                _this.isActive = false;
+            });
         }
     }
 });

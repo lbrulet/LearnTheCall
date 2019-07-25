@@ -60,6 +60,7 @@ exports.default = (0, _mixins2.default)().extend({
         getClickableDependentElements: function getClickableDependentElements() {
             var result = [this.$el];
             if (this.$refs.content) result.push(this.$refs.content);
+            if (this.overlay) result.push(this.overlay);
             result.push.apply(result, _toConsumableArray(this.getOpenDependentElements()));
             return result;
         }
